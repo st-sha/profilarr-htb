@@ -83,11 +83,7 @@ custom_formats:
   score: 3000
 - name: 720p Quality Tier 3
   score: 3000
-- name: ATVP
-  score: 3000
 - name: Dolby Vision
-  score: 3000
-- name: DSNP
   score: 3000
 - name: 1080p Quality Tier 4
   score: 2000
@@ -95,17 +91,11 @@ custom_formats:
   score: 2000
 - name: 720p Quality Tier 4
   score: 2000
-- name: AMZN
-  score: 2000
-- name: HMAX
-  score: 2000
 - name: 1080p Quality Tier 5
   score: 1000
 - name: 2160p Quality Tier 7
   score: 1000
 - name: 720p Quality Tier 5
-  score: 1000
-- name: ATV
   score: 1000
 - name: HDR
   score: 1000
@@ -120,8 +110,6 @@ custom_formats:
 - name: NF
   score: 1000
 - name: NOW
-  score: 1000
-- name: PCOK
   score: 1000
 - name: PQ
   score: 1000
@@ -163,13 +151,7 @@ custom_formats:
   score: 0
 - name: HTSR
   score: 0
-- name: HULU
-  score: 0
-- name: PMTP
-  score: 0
 - name: ROKU
-  score: 0
-- name: SHO
   score: 0
 - name: STAN
   score: 0
@@ -264,9 +246,9 @@ qualities:
     name: WEBDL-2160p
 - id: 6
   name: WEBRip-2160p
-- description: Indistinguishable from source
-  id: -2
-  name: 1080p Transparent
+- id: -2
+  name: 1080p Quality HDR
+  description: Indistinguishable from source
   qualities:
   - id: 10
     name: Bluray-1080p
@@ -274,9 +256,9 @@ qualities:
     name: WEBDL-1080p
   - id: 11
     name: WEBRip-1080p
-- description: Fallback to 720p when 1080p cannot be found.
-  id: -3
-  name: 720p Fallback
+- id: -3
+  name: 720p Quality
+  description: Fallback to 720p when 1080p cannot be found.
   qualities:
   - id: 13
     name: Bluray-720p
@@ -288,9 +270,9 @@ qualities:
   name: HDTV-1080p
 - id: 16
   name: HDTV-720p
-- description: Standard Definition Fallbacks
-  id: -4
-  name: SD Fallback
+- id: -4
+  name: 480p Quality
+  description: Standard Definition Fallbacks
   qualities:
   - id: 18
     name: Bluray-480p

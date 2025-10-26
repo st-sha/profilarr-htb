@@ -1,3 +1,25 @@
+name: 2160p Quality
+description: '2160p Quality utilizes the [**Encode Efficiency Index**](https://dictionarry.dev/wiki/eei)
+  metric at a 55% target ratio to prioritize **transparent** x265 4k encodes
+
+
+  - 2160p Blurays
+
+  - Fallbacks in Place for Proper Quality Progression
+
+  - 2160p Bluray > 2160p WEB-DL > 1080p Bluray > 1080p WEB-DL > 720p Bluray > 720p
+  WEB-DL > 480p WEB-DL > DVD'
+tags:
+- 2160p
+- Quality Focused
+- HDR
+- Lossless Audio
+- x265
+- h265
+upgradesAllowed: true
+minCustomFormatScore: 0
+upgradeUntilScore: 400000
+minScoreIncrement: 1
 custom_formats:
 # CUSTOM: UHD Bluray moved to front of list and boosted from 240000 to 280000 for physical media priority
 - name: UHD Bluray
@@ -50,6 +72,8 @@ custom_formats:
   score: 80000
 - name: 480p WEB-DL
   score: 60000
+- name: 1080p Balanced Tier 1
+  score: 60000
 - name: 720p Quality Tier 1
   score: 45000
 - name: 720p Quality Tier 2
@@ -70,18 +94,8 @@ custom_formats:
   score: 11000
 - name: SD Quality Tier 2
   score: 10000
-- name: ATVP
-  score: 3000
 - name: Dolby Vision
   score: 3000
-- name: DSNP
-  score: 3000
-- name: AMZN
-  score: 2000
-- name: HMAX
-  score: 2000
-- name: ATV
-  score: 1000
 - name: DTS-X
   score: 1000
 - name: HDR
@@ -97,9 +111,7 @@ custom_formats:
 - name: NF
   score: 1000
 - name: NOW
-  score: 1000
-- name: PCOK
-  score: 1000
+  score: 0
 - name: PQ
   score: 1000
 - name: DTS-HD MA
@@ -150,43 +162,43 @@ custom_formats:
   score: 0
 - name: HTSR
   score: 0
-- name: HULU
-  score: 0
-- name: PMTP
-  score: 0
 - name: ROKU
-  score: 0
-- name: SHO
   score: 0
 - name: STAN
   score: 0
 - name: Foreign Release Groups
   score: -900
 - name: x265 (Bluray)
-  score: 0
+  score: -220000
 - name: AV1
   score: -999999
 - name: Banned Groups
   score: -999999
 - name: Banned Groups (Title)
   score: -999999
+- name: Banned UHD Bluray
+  score: -999999
 - name: Banned WEBRip
   score: -999999
 - name: Dolby Vision (Without Fallback)
   score: -999999
-- name: DVD Remux
-  score: -999999
 - name: Full Disc
   score: -999999
-- name: Remux
+- name: h265
   score: -999999
-- name: Upscaled
+- name: Remux
   score: -999999
 - name: VP9
   score: -999999
 - name: VVC
   score: -999999
 - name: x264 (2160p)
+  score: -999999
+- name: x265 (Missing)
+  score: -999999
+- name: x265 (WEB)
+  score: -999999
+- name: Xvid
   score: -999999
 custom_formats_radarr:
 # CUSTOM: Enhanced streaming service scoring - MA boosted from 4000 to 6000
@@ -206,10 +218,14 @@ custom_formats_radarr:
   score: 2000
 - name: MAX
   score: 2000
+- name: Better Theatricals
+  score: 1000
 - name: CRIT
   score: 1000
 - name: Special Edition
   score: 1000
+- name: iTunes Enhancement
+  score: -3000
 - name: 3D
   score: -999999
 - name: B&W
@@ -222,35 +238,35 @@ custom_formats_radarr:
   score: -999999
 - name: Sing Along
   score: -999999
+- name: Upscale
+  score: -999999
 custom_formats_sonarr:
+- name: ATVP
+  score: 3000
+- name: DSNP
+  score: 3000
+- name: HMAX
+  score: 3000
 - name: MAX
   score: 3000
+- name: Amazon Enhancement
+  score: 1000
 - name: iT
   score: 1000
 - name: Season Pack
   score: 10
+- name: HBO Max Enhancement
+  score: -1000
 - name: Remux (Source)
   score: -999999
 - name: TV Extras
   score: -999999
-description: '2160p Quality utilizes the [**Encode Efficiency Index**](https://dictionarry.dev/wiki/eei)
-  metric at a 55% target ratio to prioritize **transparent** x265 4k encodes
-
-
-  - 2160p Blurays
-
-  - Fallbacks in Place for Proper Quality Progression
-
-  - 2160p Bluray > 2160p WEB-DL > 1080p Bluray > 1080p WEB-DL > 720p Bluray > 720p
-  WEB-DL > 480p WEB-DL > DVD'
-language: must_original
-minCustomFormatScore: 0  # CUSTOM: Removed upstream minimum of 20000
-minScoreIncrement: 1
-name: 2160p Quality
+- name: Upscaled
+  score: -999999
 qualities:
 - description: Indistinguishable from source
   id: -1
-  name: 2160p Transparent
+  name: 2160p Quality
   qualities:
   - id: 4
     name: Bluray-2160p
@@ -260,9 +276,9 @@ qualities:
   name: WEBRip-2160p
 - id: 10
   name: Bluray-1080p
-- description: 1080 web source
+- description: 1080 web sources
   id: -2
-  name: 1080p Web
+  name: 1080p Quality HDR
   qualities:
   - id: 9
     name: WEBDL-1080p
@@ -270,7 +286,7 @@ qualities:
     name: WEBRip-1080p
 - description: Fallback to 720p when 1080p cannot be found.
   id: -3
-  name: 720p Fallback
+  name: 720p Quality
   qualities:
   - id: 13
     name: Bluray-720p
@@ -284,7 +300,7 @@ qualities:
   name: HDTV-720p
 - description: Standard Definition Fallbacks
   id: -4
-  name: SD Fallback
+  name: 480p Quality
   qualities:
   - id: 18
     name: Bluray-480p
@@ -294,18 +310,8 @@ qualities:
     name: WEBRip-480p
   - id: 22
     name: DVD
-- id: 24
-  name: SDTV
-tags:
-- 2160p
-- Quality Focused
-- HDR
-- Lossless Audio
-- x265
-- h265
-upgradeUntilScore: 400000
 upgrade_until:
-  description: Indistinguishable from source
   id: -1
-  name: 2160p Transparent
-upgradesAllowed: true
+  name: 2160p Quality
+  description: Indistinguishable from source
+language: must_original

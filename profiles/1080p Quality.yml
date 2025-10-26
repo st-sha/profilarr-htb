@@ -191,16 +191,18 @@ custom_formats_sonarr:
 qualities:
 - id: 10
   name: Bluray-1080p
+  description: Physical media priority - Highest quality 1080p source with superior video/audio fidelity compared to streaming
 - id: -1
-  name: 1080 web
-  description: 1080 web sources
+  name: 1080p Quality
+  description: All capable of being indistinguishable from source. WEB-DL included
+    to not allow unknown encode to trump known WEB-DL.
   qualities:
   - id: 9
     name: WEBDL-1080p
   - id: 11
     name: WEBRip-1080p
 - id: -2
-  name: 720p Fallback
+  name: 720p Quality
   description: Fallback to 720p when 1080p cannot be found.
   qualities:
   - id: 13
@@ -214,7 +216,7 @@ qualities:
 - id: 16
   name: HDTV-720p
 - id: -3
-  name: SD Fallback
+  name: 480p Quality
   description: Standard Definition Fallbacks
   qualities:
   - id: 18
@@ -230,5 +232,5 @@ qualities:
 upgrade_until:
   id: 10
   name: Bluray-1080p
-  description: 1080p Blu-ray video encoded with lossy compression
+  description: Physical media priority - Highest quality 1080p source with superior video/audio fidelity compared to streaming
 language: must_original

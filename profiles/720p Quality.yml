@@ -174,7 +174,7 @@ custom_formats_sonarr:
   score: -999999
 qualities:
 - id: -1
-  name: Transparent Capable
+  name: 720p Quality
   description: All capable of being indistinguishable from source. WEB-DL included
     to not allow unknown encode to trump known WEB-DL.
   qualities:
@@ -187,7 +187,7 @@ qualities:
 - id: 16
   name: HDTV-720p
 - id: -2
-  name: SD Fallback
+  name: 480p Quality
   description: Standard Definition Fallbacks
   qualities:
   - id: 18
@@ -200,7 +200,7 @@ qualities:
     name: DVD
 upgrade_until:
   id: -1
-  name: Transparent Capable
+  name: 720p Quality
   description: All capable of being indistinguishable from source. WEB-DL included
     to not allow unknown encode to trump known WEB-DL.
 language: must_original

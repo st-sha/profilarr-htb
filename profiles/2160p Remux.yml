@@ -8,21 +8,21 @@ description: '2160p Remux utilizes **Audio / Video Formats** to prioritise high 
   - Fallbacks in Place for Proper Quality Progression
 
   - 2160p Remux > 2160p Bluray > 2160p WEB-DL > 1080p Remux > 1080p HDR Bluray > 1080p
-  Bluray > 1080p WEB-DL > 720p Bluray > 720p WEB-DL > 480p WEB-DL > DVD
-  
-  CUSTOM - Base remux profile with balanced Special Edition handling - neutral approach'
+  Bluray > 1080p WEB-DL > 720p Bluray > 720p WEB-DL > 480p WEB-DL > DVD'
 tags:
-- 1080p
-- Remux
+- 2160p
+- Remux Focused
 - HDR
 - Lossless Audio
 - h265
 - x265
 upgradesAllowed: true
-minCustomFormatScore: 0  # CUSTOM: Removed upstream minimum of 20000
+minCustomFormatScore: 0
 upgradeUntilScore: 400000
 minScoreIncrement: 1
 custom_formats:
+- name: 2160p Remux
+  score: 320000
 - name: 2160p Quality Tier 1
   score: 304000
 - name: 2160p Quality Tier 2
@@ -49,8 +49,6 @@ custom_formats:
   score: 240000
 - name: 1080p WEB-DL
   score: 200000
-- name: 2160p Remux
-  score: 160000
 - name: 1080p Bluray
   score: 140000
 - name: 1080p WEBRip
@@ -93,55 +91,25 @@ custom_formats:
   score: 20000
 - name: DVD
   score: 20000
+- name: DVD Remux
+  score: -999999
 - name: SD Quality Tier 1
   score: 11000
-- name: DTS-X
-  score: 10000
 - name: SD Quality Tier 2
   score: 10000
-- name: DTS-HD MA
-  score: 8000
-- name: TrueHD
-  score: 8000
-- name: TrueHD (Missing)
-  score: 8000
-- name: FLAC
-  score: 7000
-- name: PCM
-  score: 7000
-- name: DTS-HD HRA
-  score: 5000
-- name: Opus
-  score: 5000
-- name: Dolby Digital +
-  score: 4000
-- name: Remux Tier 0
-  score: 3100
-- name: ATVP
-  score: 3000
 - name: Dolby Vision
   score: 3000
-- name: DSNP
-  score: 3000
-- name: DTS-ES
-  score: 3000
 - name: AMZN
-  score: 2000
-- name: Atmos
-  score: 2000
-- name: Atmos (Missing)
-  score: 2000
-- name: DTS
-  score: 2000
-- name: HMAX
   score: 2000
 - name: HDR10+
   score: 1000
 - name: ATV
   score: 1000
-- name: Dolby Digital
+- name: DTS-X
   score: 1000
 - name: HDR
+  score: 1000
+- name: HDR (Missing)
   score: 1000
 - name: HDR10
   score: 1000
@@ -151,28 +119,50 @@ custom_formats:
   score: 1000
 - name: NF
   score: 1000
-- name: NOW
-  score: 1000
-- name: PCOK
-  score: 1000
 - name: PQ
   score: 1000
-- name: WEB-DL Tier 1
+- name: DTS-HD MA
+  score: 800
+- name: TrueHD
+  score: 800
+- name: TrueHD (Missing)
+  score: 800
+- name: FLAC
+  score: 700
+- name: PCM
+  score: 700
+- name: DTS-HD HRA
+  score: 500
+- name: Opus
+  score: 500
+- name: Dolby Digital +
+  score: 400
+- name: DTS-ES
+  score: 300
+- name: Atmos
+  score: 200
+- name: Atmos (Missing)
+  score: 200
+- name: Dolby Digital
+  score: 200
+- name: DTS
   score: 100
 - name: Remux Tier 1
+  score: 100
+- name: WEB-DL Tier 1
+  score: 100
+- name: Remux Tier 2
   score: 80
 - name: WEB-DL Tier 2
   score: 80
-- name: Remux Tier 2
+- name: Remux Tier 3
   score: 60
 - name: WEB-DL Tier 3
   score: 60
-- name: Remux Tier 3
+- name: Remux Tier 4
   score: 40
 - name: WEB-DL Tier 4
   score: 40
-- name: Remux Tier 4
-  score: 20
 - name: WEB-DL Tier 5
   score: 20
 - name: Repack3
@@ -191,6 +181,10 @@ custom_formats:
   score: 0
 - name: HULU
   score: 0
+- name: NOW
+  score: 0
+- name: PCOK
+  score: 0
 - name: PMTP
   score: 0
 - name: ROKU
@@ -202,7 +196,7 @@ custom_formats:
 - name: Foreign Release Groups
   score: -900
 - name: x265 (Bluray)
-  score: 0
+  score: -220000
 - name: AV1
   score: -999999
 - name: Banned Groups
@@ -217,11 +211,9 @@ custom_formats:
   score: -999999
 - name: Dolby Vision (Without Fallback)
   score: -999999
-- name: DVD Remux
-  score: -999999
 - name: Full Disc
   score: -999999
-- name: Upscaled
+- name: h265
   score: -999999
 - name: VP9
   score: -999999
@@ -230,24 +222,38 @@ custom_formats:
 - name: x264 (2160p)
   score: -999999
 - name: x265 (Missing)
-  score: 0
+  score: -999999
 - name: x265 (Remux)
-  score: 0
+  score: -999999
 - name: x265 (WEB)
-  score: 0
+  score: -999999
 - name: Xvid
   score: -999999
 custom_formats_radarr:
 - name: IMAX Enhanced
   score: 40000
 - name: MA
-  score: 5000
+  score: 6000
+- name: ATVP
+  score: 4000
+- name: DSNP
+  score: 4000
 - name: iT
-  score: 3000
+  score: 4000
+- name: Amazon Enhancement
+  score: 2000
+- name: HMAX
+  score: 2000
 - name: MAX
   score: 2000
+- name: Better Theatricals
+  score: 1000
 - name: CRIT
   score: 1000
+- name: Special Edition
+  score: 1000
+- name: iTunes Enhancement
+  score: -3000
 - name: 3D
   score: -999999
 - name: B&W
@@ -258,14 +264,28 @@ custom_formats_radarr:
   score: -999999
 - name: Sing Along
   score: -999999
+- name: Upscale
+  score: -999999
 custom_formats_sonarr:
+- name: ATVP
+  score: 3000
+- name: DSNP
+  score: 3000
+- name: HMAX
+  score: 3000
 - name: MAX
   score: 3000
+- name: Amazon Enhancement
+  score: 1000
 - name: iT
   score: 1000
 - name: Season Pack
   score: 10
+- name: HBO Max Enhancement
+  score: -1000
 - name: TV Extras
+  score: -999999
+- name: Upscaled
   score: -999999
 qualities:
 - id: 3

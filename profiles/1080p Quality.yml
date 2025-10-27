@@ -2,7 +2,7 @@ name: 1080p Quality
 description: "1080p Quality utilizes the [**Golden Popcorn Performance Index**](https://dictionarry.dev/wiki/gppi)\
   \ to target **transparent** x264 1080p encodes. \n\n- 1080p Blurays\n- Fallbacks\
   \ in Place for Proper Quality Progression\n- 1080p Bluray > 1080p WEB-DL > 720p\
-  \ Bluray > 720p WEB-DL > 480p WEB-DL > DVD\n\nCUSTOM - Physical media priority maintained with quality tier integration"
+  \ Bluray > 720p WEB-DL > 480p WEB-DL > DVD"
 tags:
 - 1080p
 - Quality Focused
@@ -14,14 +14,14 @@ minCustomFormatScore: 0
 upgradeUntilScore: 400000
 minScoreIncrement: 1
 custom_formats:
-- name: 1080p Bluray
-  score: 200000
 - name: 1080p WEB-DL
   score: 140000
+- name: 1080p Bluray
+  score: 200000
 - name: 1080p WEBRip
   score: 140000
-- name: 720p Bluray
-  score: 100000
+- name: 720p WEB-DL
+  score: 80000
 - name: 1080p Quality Tier 1
   score: 85000
 - name: 1080p Quality Tier 2
@@ -34,10 +34,12 @@ custom_formats:
   score: 81000
 - name: 1080p Quality Tier 6
   score: 80000
-- name: 720p WEB-DL
-  score: 80000
+- name: 720p Bluray
+  score: 100000
 - name: 720p WEBRip
   score: 80000
+- name: 1080p Balanced Tier 1
+  score: 60000
 - name: 480p WEB-DL
   score: 60000
 - name: 720p Quality Tier 1
@@ -56,6 +58,8 @@ custom_formats:
   score: 20000
 - name: DVD
   score: 20000
+- name: DVD Remux
+  score: -999999
 - name: SD Quality Tier 1
   score: 11000
 - name: SD Quality Tier 2
@@ -70,21 +74,11 @@ custom_formats:
   score: 2000
 - name: MAX
   score: 2000
-- name: Dolby Vision
-  score: 1000
-- name: HDR
-  score: 1000
-- name: HDR10
-  score: 1000
-- name: HDR10+
+- name: ATV
   score: 1000
 - name: iT
   score: 1000
 - name: NF
-  score: 1000
-- name: NOW
-  score: 1000
-- name: PCOK
   score: 1000
 - name: DTS-HD HRA
   score: 800
@@ -96,9 +90,9 @@ custom_formats:
   score: 400
 - name: DTS-ES
   score: 400
-- name: DTS
-  score: 200
 - name: Dolby Digital
+  score: 200
+- name: DTS
   score: 100
 - name: WEB-DL Tier 1
   score: 100
@@ -126,6 +120,10 @@ custom_formats:
   score: 0
 - name: HULU
   score: 0
+- name: NOW
+  score: 0
+- name: PCOK
+  score: 0
 - name: PMTP
   score: 0
 - name: ROKU
@@ -144,21 +142,31 @@ custom_formats:
   score: -999999
 - name: Banned WEBRip
   score: -999999
-- name: DVD Remux
-  score: -999999
+- name: Dolby Vision
+  score: 3000
 - name: Full Disc
   score: -999999
+- name: h265
+  score: -999999
+- name: HDR
+  score: 1000
+- name: HDR10
+  score: 1000
+- name: HDR10+
+  score: 1000
 - name: HLG
-  score: -999999
+  score: 1000
 - name: PQ
-  score: -999999
+  score: 1000
 - name: Remux
-  score: -999999
-- name: Upscaled
   score: -999999
 - name: VP9
   score: -999999
 - name: VVC
+  score: -999999
+- name: x265
+  score: -999999
+- name: Xvid
   score: -999999
 custom_formats_radarr:
 - name: MA
@@ -181,12 +189,16 @@ custom_formats_radarr:
   score: -999999
 - name: Sing Along
   score: -999999
+- name: Upscale
+  score: -999999
 custom_formats_sonarr:
 - name: Season Pack
   score: 10
 - name: Remux (Source)
   score: -999999
 - name: TV Extras
+  score: -999999
+- name: Upscaled
   score: -999999
 qualities:
 - id: 10

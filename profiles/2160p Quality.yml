@@ -21,11 +21,6 @@ minCustomFormatScore: 0
 upgradeUntilScore: 400000
 minScoreIncrement: 1
 custom_formats:
-# CUSTOM: UHD Bluray moved to front of list and boosted from 240000 to 280000 for physical media priority
-- name: UHD Bluray
-  score: 280000  # CUSTOM: Boosted from upstream 240000 to match Quality Tier 5
-- name: UHD Bluray (Missing)
-  score: 280000  # CUSTOM: Boosted from upstream 240000 to match UHD Bluray
 - name: 2160p Quality Tier 1
   score: 284000
 - name: 2160p Quality Tier 2
@@ -44,16 +39,20 @@ custom_formats:
   score: 260000
 - name: 2160p Quality Tier 6
   score: 259000
+- name: UHD Bluray
+  score: 280000
+- name: UHD Bluray (Missing)
+  score: 280000
 - name: 2160p Bluray
   score: 250000  # CUSTOM: Added (not present in upstream)
-- name: 1080p Bluray
-  score: 200000
 - name: 1080p WEB-DL
   score: 140000
+- name: 1080p Bluray
+  score: 200000
 - name: 1080p WEBRip
   score: 140000
-- name: 720p Bluray
-  score: 100000
+- name: 720p WEB-DL
+  score: 80000
 - name: 1080p Quality Tier 1
   score: 85000
 - name: 1080p Quality Tier 2
@@ -66,13 +65,13 @@ custom_formats:
   score: 81000
 - name: 1080p Quality Tier 6
   score: 80000
-- name: 720p WEB-DL
-  score: 80000
+- name: 720p Bluray
+  score: 100000
 - name: 720p WEBRip
   score: 80000
-- name: 480p WEB-DL
-  score: 60000
 - name: 1080p Balanced Tier 1
+  score: 60000
+- name: 480p WEB-DL
   score: 60000
 - name: 720p Quality Tier 1
   score: 45000
@@ -90,28 +89,34 @@ custom_formats:
   score: 20000
 - name: DVD
   score: 20000
+- name: DVD Remux
+  score: -999999
 - name: SD Quality Tier 1
   score: 11000
 - name: SD Quality Tier 2
   score: 10000
 - name: Dolby Vision
   score: 3000
+- name: AMZN
+  score: 2000
+- name: HDR10+
+  score: 1000
+- name: ATV
+  score: 1000
 - name: DTS-X
   score: 1000
 - name: HDR
+  score: 1000
+- name: HDR (Missing)
   score: 1000
 - name: HDR10
   score: 1000
 - name: HDR10 (Missing)
   score: 1000
-- name: HDR10+
-  score: 1000
 - name: HLG
   score: 1000
 - name: NF
   score: 1000
-- name: NOW
-  score: 0
 - name: PQ
   score: 1000
 - name: DTS-HD MA
@@ -134,9 +139,9 @@ custom_formats:
   score: 200
 - name: Atmos (Missing)
   score: 200
-- name: DTS
-  score: 200
 - name: Dolby Digital
+  score: 200
+- name: DTS
   score: 100
 - name: WEB-DL Tier 1
   score: 100
@@ -162,7 +167,17 @@ custom_formats:
   score: 0
 - name: HTSR
   score: 0
+- name: HULU
+  score: 0
+- name: NOW
+  score: 0
+- name: PCOK
+  score: 0
+- name: PMTP
+  score: 0
 - name: ROKU
+  score: 0
+- name: SHO
   score: 0
 - name: STAN
   score: 0
@@ -201,11 +216,10 @@ custom_formats:
 - name: Xvid
   score: -999999
 custom_formats_radarr:
-# CUSTOM: Enhanced streaming service scoring - MA boosted from 4000 to 6000
 - name: IMAX Enhanced
   score: 40000  # CUSTOM: Added IMAX Enhanced boost (not in upstream)
 - name: MA
-  score: 6000  # CUSTOM: Boosted from upstream 4000 for Movies Anywhere premium
+  score: 6000
 - name: ATVP
   score: 4000
 - name: DSNP

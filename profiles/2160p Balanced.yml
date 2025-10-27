@@ -1,15 +1,33 @@
+name: 2160p Balanced
+description: "2160p Balanced targets consistent & immutable 2160p **WEB-DLs w/ Lossy\
+  \ Audio**. \n\n- 2160p WEB-DL\n- Fallbacks in Place for Proper Quality Progression\n\
+  - 2160p WEB-DL > 1080p Bluray > 1080p WEB-DL > 720p Bluray > 720p WEB-DL > 480p\
+  \ WEB-DL > DVD"
+tags:
+- 2160p
+- Balanced Focused
+- HDR
+- Lossy Audio
+- x264
+- h265
+upgradesAllowed: true
+minCustomFormatScore: 20000
+upgradeUntilScore: 400000
+minScoreIncrement: 1
 custom_formats:
+- name: 2160p Balanced Tier 1
+  score: 284000
+- name: 2160p Balanced Tier 2
+  score: 280000
+- name: 2160p WEB-DL
+  score: 280000
 - name: UHD Bluray
   score: 240000
 - name: UHD Bluray (Missing)
   score: 240000
-- name: 2160p Bluray
-  score: 250000
-- name: 2160p WEB-DL
-  score: 240000
-- name: 1080p Bluray
-  score: 200000
 - name: 1080p WEB-DL
+  score: 200000
+- name: 1080p Bluray
   score: 140000
 - name: 1080p WEBRip
   score: 140000
@@ -28,8 +46,6 @@ custom_formats:
 - name: 1080p Quality Tier 6
   score: 80000
 - name: 720p Bluray
-  score: 100000
-- name: 720p WEB-DL
   score: 80000
 - name: 720p WEBRip
   score: 80000
@@ -49,67 +65,33 @@ custom_formats:
   score: 41000
 - name: 720p Quality Tier 6
   score: 40000
-- name: 2160p Balanced Tier 1
-  score: 33000
-- name: 2160p Balanced Tier 2
-  score: 30000
 - name: 720p Balanced Tier 1
   score: 20000
 - name: DVD
   score: 20000
+- name: DVD Remux
+  score: -999999
 - name: SD Quality Tier 1
   score: 11000
 - name: SD Quality Tier 2
   score: 10000
-- name: 2160p Quality Tier 1
-  score: 7000
-- name: 2160p Quality Tier 2
-  score: 6000
-- name: 1080p Quality Tier 1
-  score: 5000
-- name: 2160p Quality Tier 3
-  score: 5000
-- name: 720p Quality Tier 1
-  score: 5000
-- name: 1080p Quality Tier 2
-  score: 4000
-- name: 2160p Quality Tier 4
-  score: 4000
-- name: 720p Quality Tier 2
-  score: 4000
-- name: 1080p Quality Tier 3
-  score: 3000
-- name: 2160p Quality Tier 5
-  score: 3000
-- name: 720p Quality Tier 3
-  score: 3000
 - name: Dolby Vision
   score: 3000
-- name: 1080p Quality Tier 4
+- name: AMZN
   score: 2000
-- name: 2160p Quality Tier 6
-  score: 2000
-- name: 720p Quality Tier 4
-  score: 2000
-- name: 1080p Quality Tier 5
+- name: HDR10+
   score: 1000
-- name: 2160p Quality Tier 7
-  score: 1000
-- name: 720p Quality Tier 5
+- name: ATV
   score: 1000
 - name: HDR
   score: 1000
+- name: HDR (Missing)
+  score: 1000
 - name: HDR10
-  score: 1000
-- name: HDR10 (Missing)
-  score: 1000
-- name: HDR10+
   score: 1000
 - name: HLG
   score: 1000
 - name: NF
-  score: 1000
-- name: NOW
   score: 1000
 - name: PQ
   score: 1000
@@ -123,9 +105,9 @@ custom_formats:
   score: 400
 - name: DTS-ES
   score: 400
-- name: DTS
-  score: 200
 - name: Dolby Digital
+  score: 200
+- name: DTS
   score: 100
 - name: WEB-DL Tier 1
   score: 100
@@ -151,37 +133,51 @@ custom_formats:
   score: 0
 - name: HTSR
   score: 0
+- name: HULU
+  score: 0
+- name: NOW
+  score: 0
+- name: PCOK
+  score: 0
+- name: PMTP
+  score: 0
 - name: ROKU
+  score: 0
+- name: SHO
   score: 0
 - name: STAN
   score: 0
 - name: Foreign Release Groups
   score: -900
 - name: x265 (Bluray)
-  score: 0
+  score: -220000
 - name: AV1
   score: -999999
 - name: Banned Groups
   score: -999999
 - name: Banned Groups (Title)
   score: -999999
+- name: Banned UHD Bluray
+  score: -999999
 - name: Banned WEBRip
   score: -999999
 - name: Dolby Vision (Without Fallback)
   score: -999999
-- name: DVD Remux
-  score: -999999
 - name: Full Disc
   score: -999999
-- name: Remux
+- name: h265
   score: -999999
-- name: Upscaled
+- name: Remux
   score: -999999
 - name: VP9
   score: -999999
 - name: VVC
   score: -999999
 - name: x264 (2160p)
+  score: -999999
+- name: x265 (WEB)
+  score: -999999
+- name: Xvid
   score: -999999
 custom_formats_radarr:
 - name: MA
@@ -198,10 +194,14 @@ custom_formats_radarr:
   score: 2000
 - name: MAX
   score: 2000
+- name: Better Theatricals
+  score: 1000
 - name: CRIT
   score: 1000
 - name: Special Edition
   score: 1000
+- name: iTunes Enhancement
+  score: -3000
 - name: 3D
   score: -999999
 - name: B&W
@@ -214,38 +214,42 @@ custom_formats_radarr:
   score: -999999
 - name: Sing Along
   score: -999999
+- name: Upscale
+  score: -999999
 custom_formats_sonarr:
+- name: ATVP
+  score: 3000
+- name: DSNP
+  score: 3000
+- name: HMAX
+  score: 3000
 - name: MAX
   score: 3000
+- name: Amazon Enhancement
+  score: 1000
 - name: iT
   score: 1000
 - name: Season Pack
   score: 10
+- name: HBO Max Enhancement
+  score: -1000
 - name: Remux (Source)
   score: -999999
 - name: TV Extras
   score: -999999
-description: "2160p Balanced targets consistent & immutable 2160p **WEB-DLs w/ Lossy\
-  \ Audio**. \n\n- 2160p WEB-DL\n- Fallbacks in Place for Proper Quality Progression\n\
-  - 2160p WEB-DL > 1080p Bluray > 1080p WEB-DL > 720p Bluray > 720p WEB-DL > 480p\
-  \ WEB-DL > DVD\n\nCUSTOM - Balanced profile with maintained UHD Bluray priority"
-language: must_original
-minCustomFormatScore: 0
-minScoreIncrement: 1
-name: 2160p Balanced
+- name: Upscaled
+  score: -999999
 qualities:
-- description: Balanced capable releases. Typically WEB-DL would be the overwhelming
+- id: -1
+  name: 2160p Balanced
+  description: Balanced capable releases. Typically WEB-DL would be the overwhelming
     majority of releases, but there are occasional streaming optimised encodes that
     should be preferred.
-  id: -1
-  name: 2160p Balanced
   qualities:
   - id: 4
     name: Bluray-2160p
   - id: 5
     name: WEBDL-2160p
-- id: 6
-  name: WEBRip-2160p
 - id: -2
   name: 1080p Quality HDR
   description: Indistinguishable from source
@@ -266,10 +270,6 @@ qualities:
     name: WEBDL-720p
   - id: 15
     name: WEBRip-720p
-- id: 12
-  name: HDTV-1080p
-- id: 16
-  name: HDTV-720p
 - id: -4
   name: 480p Quality
   description: Standard Definition Fallbacks
@@ -282,20 +282,10 @@ qualities:
     name: WEBRip-480p
   - id: 22
     name: DVD
-- id: 24
-  name: SDTV
-tags:
-- 2160p
-- Balanced Focused
-- HDR
-- Lossy Audio
-- x264
-- h265
-upgradeUntilScore: 400000
 upgrade_until:
+  id: -1
+  name: 2160p Balanced
   description: Balanced capable releases. Typically WEB-DL would be the overwhelming
     majority of releases, but there are occasional streaming optimised encodes that
     should be preferred.
-  id: -1
-  name: 2160p Balanced
-upgradesAllowed: true
+language: must_original

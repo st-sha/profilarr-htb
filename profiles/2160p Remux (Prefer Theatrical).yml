@@ -216,7 +216,7 @@ custom_formats:
 - name: x264 (2160p)
   score: -999999
 - name: x265 (Missing)
-  score: -999999
+  score: 0
 - name: x265 (Remux)
   score: -999999
 - name: x265 (WEB)

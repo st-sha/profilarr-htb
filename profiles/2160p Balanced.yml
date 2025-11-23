@@ -180,6 +180,8 @@ custom_formats:
 - name: Xvid
   score: -999999
 custom_formats_radarr:
+- name: IMAX Enhanced
+  score: 40000
 - name: MA
   score: 6000
 - name: ATVP

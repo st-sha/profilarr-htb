@@ -128,7 +128,7 @@ custom_formats:
 - name: PQ
   score: 1000
 - name: FLAC
-  score: 800
+  score: 1610
 - name: PCM
   score: 800
 - name: DTS-HD HRA

@@ -94,15 +94,13 @@ custom_formats:
   score: 2000
 - name: HDR10+
   score: 2000
-- name: HMAX
-  score: 2000
-- name: MAX
-  score: 2000
 - name: DTS-X
   score: 1600
 - name: DTS-HD MA
   score: 1200
 - name: TrueHD
+  score: 1200
+- name: TrueHD (Missing)
   score: 1200
 - name: ATV
   score: 1000
@@ -121,7 +119,7 @@ custom_formats:
 - name: PQ
   score: 1000
 - name: FLAC
-  score: 800
+  score: 1610
 - name: PCM
   score: 800
 - name: DTS-HD HRA

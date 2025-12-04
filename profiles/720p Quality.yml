@@ -11,7 +11,7 @@ tags:
 - h264
 upgradesAllowed: true
 minCustomFormatScore: 0
-upgradeUntilScore: 400000
+upgradeUntilScore: 600000
 minScoreIncrement: 1
 custom_formats:
 - name: 720p WEB-DL

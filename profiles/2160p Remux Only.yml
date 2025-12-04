@@ -93,7 +93,7 @@ custom_formats:
 - name: AMZN
   score: 2000
 - name: HDR10+
-  score: 2000
+  score: 1000
 - name: DTS-X
   score: 1600
 - name: DTS-HD MA

@@ -63,8 +63,6 @@ custom_formats:
   score: 120000
 - name: 576p Bluray
   score: 120000
-- name: 1080p Balanced Tier 1
-  score: 100000
 - name: 720p Quality Tier 1
   score: 85000
 - name: 720p Quality Tier 2
@@ -107,22 +105,20 @@ custom_formats:
   score: 11000
 - name: SD Quality Tier 2
   score: 10000
+- name: AMZN
+  score: 3000
 - name: Dolby Vision
   score: 3000
-- name: AMZN
+- name: DSNP
+  score: 3000
+- name: ATVP
   score: 2000
 - name: HDR10+
-  score: 1000
-- name: DTS-X
-  score: 1600
-- name: DTS-HD MA
-  score: 1200
-- name: TrueHD
-  score: 1200
-- name: TrueHD (Missing)
-  score: 1200
-- name: ATV
-  score: 1000
+  score: 2000
+- name: HMAX
+  score: 2000
+- name: MAX
+  score: 2000
 - name: HDR
   score: 1000
 - name: HDR (Missing)
@@ -185,13 +181,15 @@ custom_formats:
   score: 7
 - name: Repack1
   score: 6
-- name: BCORE
-  score: 0
 - name: CRAV
+  score: 0
+- name: CRIT
   score: 0
 - name: HTSR
   score: 0
 - name: HULU
+  score: 0
+- name: MUBI
   score: 0
 - name: NOW
   score: 0
@@ -219,6 +217,8 @@ custom_formats:
   score: -999999
 - name: Banned WEBRip
   score: -999999
+- name: BCORE
+  score: 5000
 - name: Dolby Vision (Without Fallback)
   score: -999999
 - name: Full Disc
@@ -257,8 +257,6 @@ custom_formats_radarr:
 - name: MAX
   score: 2000
 - name: Better Theatricals
-  score: 1000
-- name: CRIT
   score: 1000
 - name: Special Edition
   score: -40000  # CUSTOM: Heavy penalty to prefer theatrical releases

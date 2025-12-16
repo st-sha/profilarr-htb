@@ -146,7 +146,7 @@ custom_formats:
 - name: DTS-ES
   score: 500
 - name: Atmos
-  score: 400
+  score: 40
 - name: Atmos (Missing)
   score: 400
 - name: Dolby Digital

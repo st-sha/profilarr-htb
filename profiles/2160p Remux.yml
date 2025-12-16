@@ -120,7 +120,7 @@ custom_formats:
 - name: HDR10+
   score: 1000
 - name: DTS-X
-  score: 1600
+  score: 1240
 - name: DTS-HD MA
   score: 1200
 - name: TrueHD
@@ -156,7 +156,7 @@ custom_formats:
 - name: DTS-ES
   score: 500
 - name: Atmos
-  score: 400
+  score: 40
 - name: Atmos (Missing)
   score: 400
 - name: Dolby Digital

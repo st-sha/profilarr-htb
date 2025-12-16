@@ -134,7 +134,7 @@ custom_formats:
 - name: PQ
   score: 1000
 - name: FLAC
-  score: 1610
+  score: 1210
 - name: PCM
   score: 800
 - name: DTS-HD HRA
@@ -224,7 +224,7 @@ custom_formats:
 - name: Full Disc
   score: -999999
 - name: h265
-  score: -999999
+  score: 0
 - name: VP9
   score: -999999
 - name: VVC

@@ -149,7 +149,7 @@ custom_formats:
 - name: Full Disc
   score: -999999
 - name: h265
-  score: -999999
+  score: 0
 - name: HDR
   score: 1000
 - name: HDR10

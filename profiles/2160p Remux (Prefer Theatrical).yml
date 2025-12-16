@@ -240,6 +240,8 @@ custom_formats:
 - name: Xvid
   score: -999999
 custom_formats_radarr:
+- name: IMAX
+  score: 40000
 - name: IMAX Enhanced
   score: 40000  # CUSTOM: Strong preference for IMAX Enhanced releases
 - name: MA

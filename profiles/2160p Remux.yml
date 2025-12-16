@@ -308,51 +308,36 @@ custom_formats_sonarr:
 - name: Upscaled
   score: -999999
 qualities:
-- id: 3
-  name: Remux-2160p
-- id: -4
-  name: 2160p Transparent
+- id: -2
+  name: 2160p Formats
   description: ''
   qualities:
-  - id: 4
-    name: Bluray-2160p
+  - id: 3
+    name: Remux-2160p
   - id: 5
     name: WEBDL-2160p
 - id: 8
   name: Remux-1080p
+- id: 9
+  name: WEBDL-1080p
+- id: 14
+  name: WEBDL-720p
+- id: 12
+  name: HDTV-1080p
+- id: 16
+  name: HDTV-720p
 - id: -1
-  name: 1080p Transparent
-  description: All capable of being indistinguishable from source. WEB-DL included
-    to not allow unknown encode to trump known WEB-DL.
-  qualities:
-  - id: 10
-    name: Bluray-1080p
-  - id: 9
-    name: WEBDL-1080p
-  - id: 11
-    name: WEBRip-1080p
-- id: -2
-  name: 720p Transparent
-  description: Fallback to 720p when 1080p cannot be found.
-  qualities:
-  - id: 13
-    name: Bluray-720p
-  - id: 14
-    name: WEBDL-720p
-  - id: 15
-    name: WEBRip-720p
-- id: -3
   name: SD Fallback
   description: Standard Definition Fallbacks
   qualities:
-  - id: 17
-    name: Bluray-576p
-  - id: 18
-    name: Bluray-480p
-  - id: 19
-    name: WEBDL-480p
   - id: 22
     name: DVD
+  - id: 19
+    name: WEBDL-480p
+- id: 20
+  name: WEBRip-480p
+- id: 24
+  name: SDTV
 upgrade_until:
   id: 3
   name: Remux-2160p

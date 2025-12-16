@@ -339,6 +339,6 @@ qualities:
 - id: 24
   name: SDTV
 upgrade_until:
-  id: 3
-  name: Remux-2160p
+  id: -2
+  name: 2160p Formats
 language: must_original

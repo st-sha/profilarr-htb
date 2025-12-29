@@ -1,49 +1,28 @@
-name: 1080p Compact TV WEB Tier 6
-description: Matches release groups who fall under 1080p Compact WEB Tier 6
+name: 2160p Balanced Tier 3
+description: Matches release groups who fall under 2160p Balanced Tier 3
 tags:
 - Release Group Tier
-- 1080p
-- Compact
-- TV
+- 2160p
+- Balanced
 conditions:
-- name: 1080p
+- name: 2160p
   negate: false
   required: true
-  resolution: 1080p
+  resolution: 2160p
   type: resolution
-- name: x265
+- name: Bluray
   negate: false
-  pattern: x265 (Efficient)
   required: true
-  type: release_title
-- name: WEB-DL
-  negate: false
-  required: false
-  source: web_dl
+  source: bluray
   type: source
-- name: WEBRip
+- name: BHDStudio
   negate: false
-  required: false
-  source: webrip
-  type: source
-- name: HODL
-  negate: false
-  pattern: HODL
+  pattern: BHDStudio
   required: false
   type: release_group
-- name: iVy
+- name: hallowed
   negate: false
-  pattern: iVy
-  required: false
-  type: release_group
-- name: PHOCiS
-  negate: false
-  pattern: PHOCiS
-  required: false
-  type: release_group
-- name: YAWNiX
-  negate: false
-  pattern: YAWNiX
+  pattern: hallowed
   required: false
   type: release_group
 tests:

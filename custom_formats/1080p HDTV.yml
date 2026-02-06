@@ -13,4 +13,9 @@ conditions:
   required: true
   source: television
   type: source
+- name: HDTV Regex
+  negate: false
+  pattern: HDTV
+  required: true
+  type: release_title
 tests: []

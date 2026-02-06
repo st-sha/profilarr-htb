@@ -18,4 +18,9 @@ conditions:
   required: true
   negate: false
   pattern: HDTV
+- name: Sourceless Groups
+  type: release_title
+  required: true
+  negate: true
+  pattern: Sourceless Groups
 tests: []

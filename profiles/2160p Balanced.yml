@@ -91,7 +91,7 @@ custom_formats:
 - name: ATVP
   score: 2000
 - name: HDR10+
-  score: 2000
+  score: 1000
 - name: DTS-X
   score: 1210
 - name: DTS-HD MA

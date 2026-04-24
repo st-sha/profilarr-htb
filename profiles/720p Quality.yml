@@ -152,6 +152,8 @@ custom_formats:
   score: 3000
 - name: Full Disc
   score: -999999
+- name: German DL
+  score: -999999
 - name: h265
   score: 0
 - name: HDR

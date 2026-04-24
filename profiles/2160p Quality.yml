@@ -220,6 +220,8 @@ custom_formats:
   score: -999999
 - name: Full Disc
   score: -999999
+- name: German DL
+  score: -999999
 - name: h265
   score: 0
 - name: Remux
@@ -243,6 +245,8 @@ custom_formats_radarr:
   score: 40000
 - name: IMAX Enhanced
   score: 40000  # CUSTOM: Added IMAX Enhanced boost (not in upstream)
+- name: HONE Blurays
+  score: 442000
 - name: 2160p Balanced Tier 2
   score: 441000
 - name: 2160p Balanced Tier 3
@@ -289,6 +293,8 @@ custom_formats_radarr:
   score: -999999
 custom_formats_sonarr:
 - name: 2160p Balanced Tier 1
+  score: 444000
+- name: HONE Blurays
   score: 444000
 - name: DSNP
   score: 3000

@@ -15,7 +15,7 @@ upgradeUntilScore: 888888
 minScoreIncrement: 1
 custom_formats:
 - name: 2160p WEB-DL
-  score: 440000
+  score: 400000  # CUSTOM: Lowered from upstream 440000 so generic UHD Bluray (420000) beats generic 2160p WEB-DL (Radarr + Sonarr)
 - name: UHD Bluray
   score: 420000
 - name: 1080p WEB-DL

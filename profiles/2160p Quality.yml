@@ -33,7 +33,7 @@ custom_formats:
 - name: 2160p Quality Tier 5
   score: 460000
 - name: 2160p WEB-DL
-  score: 440000
+  score: 400000  # CUSTOM: Lowered from upstream 440000 so generic UHD Bluray (420000) beats generic 2160p WEB-DL (Radarr + Sonarr)
 - name: 2160p Quality Tier 6
   score: 439000
 - name: UHD Bluray

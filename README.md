@@ -12,7 +12,8 @@ priority, and the remux profiles avoid special editions where asked.
 - `v2` (this branch): the Profilarr v2 database. Profilarr v2 links it without a token and pulls
   it. Changes are new files in `ops/`, written in git or exported from the v2 UI with a
   short-lived token (see GUIDE.md).
-- `stable`: the v1 YAML database. Profilarr v1 still syncs from it until cutover.
+- `stable`: the v1 YAML database, frozen at `3904008`. Profilarr v1 synced from it until the
+  2026-10-18 cutover to v2.
 
 ## Where it came from
 
@@ -45,8 +46,9 @@ priority, and the remux profiles avoid special editions where asked.
 | `4.htb-xvid-regex-from-dictionarry.sql` | Deliberate change, not parity: uses Dictionarry's Xvid regex `\b(Xvid)\b` (chosen 2026-10-18) |
 | `5.htb-default-delay-profile.sql` | The "HTB Default" delay profile, matching live: prefer torrent, no delays, no bypass |
 | `6.htb-unlimited-max-quality-sizes.sql` | Stores the Arrs' "unlimited" maximum sizes (Radarr 2000, Sonarr 1000) as 0, the way Profilarr v2 does |
+| `7.htb-upstream-group-tiers-batch-1.sql` | Deliberate change: Dictionarry's release-group tier and ban updates (batch 1 of the 2026-10-19 review, upstream `fb09c84`). Scores are unchanged |
 
-Later files are changes made in the Profilarr v2 UI and exported here.
+Later files are HTB changes, written in git or exported from the v2 UI.
 
 ## Rules
 

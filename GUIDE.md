@@ -83,7 +83,9 @@ keep a long-lived GitHub token in v2. That leaves two ways to publish a change:
 1. In a Copilot session in a `profilarr-htb` worktree, or by hand, add
    `ops/<next number>.<short-name>.sql` with the SQL change. Copy the style of the existing ops,
    and check it with the offline harness if the session has it.
-2. Commit and push to `v2` from this PC. The GitHub login already on the PC is enough.
+2. Commit as `st-sha <st-sha@users.noreply.github.com>` and push to `v2` from this PC. The GitHub
+   login already on the PC is enough. GitHub rejects pushes of commits that carry Steven's private
+   email address (error GH007).
 3. In v2, open Databases, then HTB, then Changes, and click **Pull N commits**.
 
 **Path B: edit in the v2 UI with a short-lived token.** From the 2.2.0 source, not yet exercised.
@@ -91,8 +93,8 @@ keep a long-lived GitHub token in v2. That leaves two ways to publish a change:
 1. At GitHub, create a fine-grained token: owner `st-sha`, only `st-sha/profilarr-htb`, Contents
    read and write, expiring tomorrow.
 2. In v2, open Databases, then HTB, then Settings. Paste the token. When the Git Author fields
-   appear, set them to Steven Shaw / smshaw@gmail.com. Keep Local Ops Only **Disabled**, then
-   save.
+   appear, set them to Steven Shaw / st-sha@users.noreply.github.com (GitHub refuses the private
+   address). Keep Local Ops Only **Disabled**, then save.
 3. Make the edits. With a token saved and local ops off, each edit is a base **draft**.
 4. Export the drafts (4.6) the same day.
 5. Revoke the token at GitHub, or let it expire. v2 can't clear a stored token, but an expired one
@@ -114,7 +116,7 @@ The HTB database's link settings in v2:
 | Sync strategy | Every hour (checks for new commits only) |
 | Auto pull | Off. Pull by hand |
 | Conflict strategy | Ask |
-| Git author | Steven Shaw, smshaw@gmail.com (set during Path B) |
+| Git author | Steven Shaw, st-sha@users.noreply.github.com (set during Path B) |
 
 ## 4. Routines
 
@@ -184,6 +186,12 @@ HTB's database is not a fork of Dictionarry's v2 database, so git can't merge it
 4. Export with a message that names the upstream op, for example
    `copy upstream 131: add XYZ to 2160p Quality Tier 3`.
 5. TRaSH Guides stays linked as a cross-check only.
+
+For a large catch-up, write the op in git instead (Path A). Op 7 did this on 2026-10-19: a
+three-way comparison of upstream v1 at HTB's last merge, HTB and Dictionarry v2 listed every group
+change, and only tier and ban updates in formats HTB scores were copied. Removals that would unban
+a group were left out. Each condition type is its own group in the Arrs' matching, so copy a
+group as a `release_group` condition, even where upstream used another type.
 
 ### 4.6 Export changes to git
 
@@ -277,7 +285,8 @@ Status: from the 2.2.0 source.
 - Every sync trigger stays Manual. Never On Pull or Schedule.
 - Never turn on v2 upgrades, rename or cleanup for these Arrs. Upgrades run automated searches.
 - Apply Default Delay Profile and Prompt to Sync Changes stay off in Settings, General.
-- Before cutover, nothing syncs to production Radarr or Sonarr. v1 stays the only writer.
+- Profilarr v2 has synced production Radarr and Sonarr since the 2026-10-18 cutover. v1 is
+  stopped.
 - Measure a scoring re-band in a sandbox Arr before it reaches a real one.
 
 ## 6. Troubleshooting
@@ -315,9 +324,19 @@ Op `4` is the first deliberate change:
   the fork's `(?i)[-. ]Xvid`. Radarr already has it, a leftover from the June 2026 v2 trial.
   Steven chose it on 2026-10-18.
 
+Op `7` is the first change after cutover:
+
+- `7.htb-upstream-group-tiers-batch-1.sql`: batch 1 of the upstream group-tier review, from
+  Dictionarry `fb09c84`. It adds 16 banned groups and HDT to Banned Remux, adds or moves groups
+  in the Quality, Remux and WEB-DL tiers, and takes upstream's pattern fixes. That includes the
+  `E` ban no longer matching E.N.D, and CtrlHD, Kitsune and SbR leaving the trusted WEBRip list.
+  It leaves out upstream's ban removals and new format families. SiCFoI goes into Remux Tier 4 as
+  a release-group condition, because upstream's release-title condition never matches. Steven
+  approved it on 2026-10-19.
+
 Known differences from live at the parity check, all accepted. v2's own drift check against
-production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The first v2 sync
-at cutover would change only these:
+production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync
+that evening applied them, and drift has been clean since:
 
 - **Group numbering** in Radarr `2160p Remux`, `2160p Remux (Prefer Theatrical)` and
   `2160p Efficient`, and Sonarr `2160p Remux` and `2160p Efficient`. v1 numbered groups from their

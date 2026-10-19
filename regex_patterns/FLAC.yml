@@ -1,6 +1,0 @@
-name: FLAC
-pattern: \bFLAC(\b|\d)
-description: ''
-tags:
-- Audio
-tests: []

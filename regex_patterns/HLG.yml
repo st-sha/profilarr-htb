@@ -1,8 +1,0 @@
-name: HLG
-pattern: \b(HLG)\b
-description: This regex matches a `HLG` generalisation. This is a basic HDR Format.
-tags:
-- Enhancement
-- Colour Grade
-- HDR
-tests: []

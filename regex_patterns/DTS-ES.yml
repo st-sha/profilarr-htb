@@ -1,6 +1,0 @@
-name: DTS-ES
-pattern: dts[-. ]?es\b
-description: ''
-tags:
-- Audio
-tests: []

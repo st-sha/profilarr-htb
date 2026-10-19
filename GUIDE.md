@@ -202,7 +202,7 @@ To throw a draft away instead, tick it and click **Drop selected changes** (the 
 
 ### 4.7 Pull the database after a commit made outside v2
 
-Status: from the 2.2.0 source.
+Status: verified on 2.2.0 (ops 5 and 6, 2026-10-18).
 
 If someone adds or fixes an op directly in git (for example in a Copilot session), v2 has to pull
 it before the next export:
@@ -216,27 +216,38 @@ every sync trigger on Manual, so a pull never changes an Arr by itself.
 
 ### 4.8 Run and read drift
 
-Status: from the 2.2.0 source.
+Status: verified on 2.2.0 (parity check, 2026-10-18).
+
+To check an Arr, it has to be connected to v2 (Arrs, then New: name, type, URL such as
+`http://192.168.0.105:7878/radarr`, and its API key), with selections saved on its **Sync** page
+(4.9, steps 1 to 3, Save only). Then:
 
 1. Arrs, then the instance, then **Drift**.
-2. Turn on **Detection** if needed, then **Run Now**. It only reads from the Arr.
+2. Turn on **Detection** and click Save, then **Run Now**. It only reads from the Arr.
 3. Each row is one drifted item (a profile, custom format, delay profile or media management
    config). Expand it to see the Profilarr value next to the Arr value.
 4. Drift only covers what is selected on the instance's Sync page.
 
-Known differences at the parity check (see section 7) are expected until the first sync.
+Known differences at the parity check (see section 7) are expected until the first sync. After
+the check, the instances were deleted from v2 again, so nothing can reach the Arrs before cutover.
 
 ### 4.9 Sync to an Arr (after cutover only)
 
-Status: not yet exercised. Cutover needs its own approval.
+Status: selections and priority verified on 2.2.0. The Sync button itself is not yet exercised.
+Cutover needs its own approval.
 
 1. Arrs, then the instance, then **Sync**.
-2. Each section (Quality Profiles, Delay Profiles, Media Management) has its own selections and
-   its own Trigger, Save and Sync buttons. Select only HTB items, and keep HTB at database
-   priority #1.
-3. Keep Trigger on **Manual**. Click **Save** for selections, then **Sync** only when you mean to
+2. Drag the HTB database card to the top of Quality Profiles so it shows **Priority #1**.
+3. Each section has its own selections and its own Trigger, Save and Sync buttons. Select only
+   HTB items:
+   - Media Management: HTB / default for Naming, Quality Definitions and Media Settings.
+   - Delay Profiles: HTB Default.
+   - Quality Profiles: Radarr's 7 HTB profiles, or Sonarr's 6.
+
+   Save Media Management and Delay Profiles first. Quality Profiles won't save until both are set.
+4. Keep Trigger on **Manual**. Click **Save** for selections, then **Sync** only when you mean to
    push. Sync and Save sit next to each other, so check which one you are pressing.
-4. Run drift afterwards. It should be clean.
+5. Run drift afterwards. It should be clean.
 
 ### 4.10 Undo a change
 
@@ -304,8 +315,9 @@ Op `4` is the first deliberate change:
   the fork's `(?i)[-. ]Xvid`. Radarr already has it, a leftover from the June 2026 v2 trial.
   Steven chose it on 2026-10-18.
 
-Known differences from live at the parity check, all accepted. The first v2 sync at cutover
-would change only these:
+Known differences from live at the parity check, all accepted. v2's own drift check against
+production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The first v2 sync
+at cutover would change only these:
 
 - **Group numbering** in Radarr `2160p Remux`, `2160p Remux (Prefer Theatrical)` and
   `2160p Efficient`, and Sonarr `2160p Remux` and `2160p Efficient`. v1 numbered groups from their

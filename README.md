@@ -31,6 +31,7 @@ priority, and the remux profiles avoid special editions where asked.
 | --- | --- |
 | `pcd.json` | Manifest: name, version and the schema it builds on |
 | `ops/` | SQL change files. Profilarr replays them in number order on top of the schema |
+| `GUIDE.md` | How v1 and v2 work, and how to maintain this database |
 
 ## Ops
 
@@ -48,4 +49,4 @@ Later files are changes made in the Profilarr v2 UI and exported here.
 - Never rename a quality profile. Radarr and Sonarr match profiles by name, and every movie,
   series and request default points at those profiles.
 - Never edit or delete a published file in `ops/`. Add a new op instead.
-- Make changes in the Profilarr v2 UI and export them.
+- Make changes in the Profilarr v2 UI and export them. See [GUIDE.md](GUIDE.md).

@@ -33,8 +33,9 @@ Paths like `/databases/<id>/changes` are pages in the v2 web UI (port 6869 on th
   `pcd.json`). The schema defines the tables and seeds the qualities and languages.
 - v2 replays all ops, in number order, into an in-memory database (the "cache"). The UI reads and
   edits that cache.
-- When you edit something in the UI, v2 writes a new op. For a database you maintain, that op is a
-  **draft**. Drafts apply to the cache straight away, but nothing reaches git until you export them.
+- When you edit something in the UI, v2 writes a new op. Where that op goes depends on whether
+  the database has a GitHub token (section 3). With a token, it becomes a **draft** that you can
+  export to git. Without one, it stays inside v2 as a local change.
 - **Export** (on the database's Changes page) bundles the drafts you select into one new file,
   `ops/<next number>.<your message>.sql`. It commits that file with your git author name and
   pushes it to the `v2` branch, using the token saved on the database.
@@ -62,10 +63,10 @@ Paths like `/databases/<id>/changes` are pages in the v2 web UI (port 6869 on th
 | (not managed) | Delay Profiles: `HTB Default` |
 | Custom format tests in YAML | Not converted. v2 has its own Testing tab on each custom format |
 | `CUSTOM:` comments | The op file name and the commit message |
-| Edit YAML, push, Pull in v1 | Edit in the v2 UI, Export, then Sync (after cutover) |
+| Edit YAML, push, Pull in v1 | Add an op (in git, or exported from the UI), Pull in v2, then Sync (after cutover) |
 | `git merge upstream/stable` | Read upstream's new ops and copy the changes you want (routine 4.5) |
 
-## 3. Layers, and why HTB edits go to "base"
+## 3. Layers, and how a change reaches git
 
 Every compile replays four layers in order:
 
@@ -74,11 +75,33 @@ Every compile replays four layers in order:
 3. **Tweaks**: optional SQL files in the repo's `tweaks/` folder (unused here).
 4. **User**: local changes kept only inside that v2 install.
 
-For Dictionarry and TRaSH, which HTB only reads, any edit becomes a user op. For the HTB database
-it's different: it is linked with a GitHub token and **Local ops off**, so v2 treats you as its
-developer. Every edit becomes a base draft and can be exported.
+The repo is public, so v2 links and pulls HTB without a token. Steven chose on 2026-10-18 not to
+keep a long-lived GitHub token in v2. That leaves two ways to publish a change:
 
-Never turn on Local ops for HTB. Edits would then stay inside v2 and never reach git.
+**Path A: write the op in git (no token).** Verified on 2.2.0 (op 5, the delay profile).
+
+1. In a Copilot session in a `profilarr-htb` worktree, or by hand, add
+   `ops/<next number>.<short-name>.sql` with the SQL change. Copy the style of the existing ops,
+   and check it with the offline harness if the session has it.
+2. Commit and push to `v2` from this PC. The GitHub login already on the PC is enough.
+3. In v2, open Databases, then HTB, then Changes, and click **Pull N commits**.
+
+**Path B: edit in the v2 UI with a short-lived token.** From the 2.2.0 source, not yet exercised.
+
+1. At GitHub, create a fine-grained token: owner `st-sha`, only `st-sha/profilarr-htb`, Contents
+   read and write, expiring tomorrow.
+2. In v2, open Databases, then HTB, then Settings. Paste the token. When the Git Author fields
+   appear, set them to Steven Shaw / smshaw@gmail.com. Keep Local Ops Only **Disabled**, then
+   save.
+3. Make the edits. With a token saved and local ops off, each edit is a base **draft**.
+4. Export the drafts (4.6) the same day.
+5. Revoke the token at GitHub, or let it expire. v2 can't clear a stored token, but an expired one
+   is useless. Pulls keep working, because the clone on the server was made without a token.
+
+Without a token, UI edits on HTB become local user ops. They change what v2 would sync, but they
+never reach git. Don't edit HTB in the UI unless you're following Path B.
+
+Never turn on Local ops for HTB. Edits would then stay inside v2 even with a token.
 
 The HTB database's link settings in v2:
 
@@ -86,13 +109,17 @@ The HTB database's link settings in v2:
 | --- | --- |
 | Name | HTB |
 | Repository | `https://github.com/st-sha/profilarr-htb`, branch `v2` (fixed at link time) |
-| Personal access token | Fine-grained, `st-sha/profilarr-htb` only, Contents read and write |
+| Personal access token | None. Only a 1-day token during a Path B session |
 | Local ops | Off |
+| Sync strategy | Every hour (checks for new commits only) |
 | Auto pull | Off. Pull by hand |
 | Conflict strategy | Ask |
-| Git author | Steven Shaw, smshaw@gmail.com |
+| Git author | Steven Shaw, smshaw@gmail.com (set during Path B) |
 
 ## 4. Routines
+
+Routines 4.1 to 4.4 describe the UI steps, which need a Path B session (section 3). On Path A,
+ask a Copilot session to write the same change as a new op, then pull it in v2 (4.7).
 
 ### 4.1 Change a score
 
@@ -160,7 +187,7 @@ HTB's database is not a fork of Dictionarry's v2 database, so git can't merge it
 
 ### 4.6 Export changes to git
 
-Status: from the 2.2.0 source. Verified when the delay profile is exported.
+Status: from the 2.2.0 source. Needs a Path B session (section 3), not yet exercised.
 
 1. Databases, then HTB, then **Changes**. "Outgoing Changes" lists every draft.
 2. If "Incoming Changes" shows commits, pull them first. Export is blocked while the local copy is
@@ -220,18 +247,16 @@ Status: from the 2.2.0 source.
   or rewrite a published op file. Installs that already have it would go out of step with git.
 - **Exported and synced**: fix the database, export, then sync again.
 
-### 4.11 Renew the GitHub token
+### 4.11 Tokens for a Path B session
 
 Status: from the 2.2.0 source.
 
-The token on the HTB database is a fine-grained GitHub token: repository `st-sha/profilarr-htb`
-only, Contents read and write. When it expires, exports and pulls fail with an auth error.
-
-1. Create a new token on GitHub with the same scope.
-2. Databases, then HTB, then **Settings**, paste it in the token field and save.
-3. Revoke the old token on GitHub.
-
-The token lives only in v2's own database. Never put it in a file, a script or chat.
+- HTB is linked without a token. Add one only for a Path B session (section 3), with a 1-day
+  expiry, and revoke it when you're done.
+- If an export fails with an auth error, the token expired or lacks access. Create a fresh 1-day
+  token and paste it into HTB's Settings.
+- Pulls don't use the token, so they keep working after it expires.
+- The token lives only in v2's own database. Never put it in a file, a script or chat.
 
 ## 5. Safety rules
 
@@ -250,7 +275,7 @@ The token lives only in v2's own database. Never put it in a file, a script or c
 | --- | --- | --- |
 | Export says "Pull incoming changes first" | GitHub has commits v2 hasn't pulled | Pull on the Changes page, then export |
 | Export says the repository has uncommitted changes or unpushed commits | The clone inside v2 was touched by hand | Don't edit `/config/data/databases/...` by hand. Ask for help before repairing it |
-| Export or pull fails with an auth error | Token expired or lost access | Renew it (4.11) |
+| Export fails with an auth error | No token, or the 1-day token expired | Start a Path B session with a fresh token (4.11) |
 | Export says a batch failed validation | A selected draft depends on something not selected, or breaks a rule | Read the message, select the missing draft, or fix the entity |
 | Database shows errors after a pull | An op failed to compile | Check Settings, Logs for "Cache failed". Fix with a new op |
 | Conflicts tab has entries | Only user ops conflict. HTB's own edits are base ops | Review them. HTB should have none |
@@ -258,7 +283,7 @@ The token lives only in v2's own database. Never put it in a file, a script or c
 
 ## 7. What's in this branch, and known differences
 
-Ops `0` to `3` rebuild the v1 database as live Radarr and Sonarr had it on 2026-10-18:
+Ops `0` to `3` and `5` rebuild the v1 database as live Radarr and Sonarr had it on 2026-10-18:
 
 - `0.rosettarr.sql`: the converted v1 YAML (`stable` at `3904008`), unmodified.
 - `1.htb-quality-group-member-positions.sql`: the order of qualities inside each group, which v1
@@ -266,6 +291,8 @@ Ops `0` to `3` rebuild the v1 database as live Radarr and Sonarr had it on 2026-
 - `2.htb-language-any-and-not-original.sql`: v1's `must_original` rule (language Any plus
   "Not Original" at -1 in every profile).
 - `3.htb-streaming-services-in-rename.sql`: the 18 streaming formats that are in file names live.
+- `5.htb-default-delay-profile.sql`: the "HTB Default" delay profile, matching live (prefer
+  torrent, no delays, no bypass). Select it on each Arr's Sync page.
 
 Op `4` is the first deliberate change:
 

@@ -9,8 +9,9 @@ priority, and the remux profiles avoid special editions where asked.
 
 ## Branches
 
-- `v2` (this branch): the Profilarr v2 database. Profilarr v2 links it and HTB edits it in the v2
-  UI, which exports each change as a new file in `ops/`.
+- `v2` (this branch): the Profilarr v2 database. Profilarr v2 links it without a token and pulls
+  it. Changes are new files in `ops/`, written in git or exported from the v2 UI with a
+  short-lived token (see GUIDE.md).
 - `stable`: the v1 YAML database. Profilarr v1 still syncs from it until cutover.
 
 ## Where it came from
@@ -42,6 +43,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `2.htb-language-any-and-not-original.sql` | Rebuilds v1's `language: must_original`: profile language Any, plus a "Not Original" custom format scored -1 in every profile |
 | `3.htb-streaming-services-in-rename.sql` | Turns on "include in rename" for the streaming formats that have it live |
 | `4.htb-xvid-regex-from-dictionarry.sql` | Deliberate change, not parity: uses Dictionarry's Xvid regex `\b(Xvid)\b` (chosen 2026-10-18) |
+| `5.htb-default-delay-profile.sql` | The "HTB Default" delay profile, matching live: prefer torrent, no delays, no bypass |
 
 Later files are changes made in the Profilarr v2 UI and exported here.
 
@@ -50,4 +52,4 @@ Later files are changes made in the Profilarr v2 UI and exported here.
 - Never rename a quality profile. Radarr and Sonarr match profiles by name, and every movie,
   series and request default points at those profiles.
 - Never edit or delete a published file in `ops/`. Add a new op instead.
-- Make changes in the Profilarr v2 UI and export them. See [GUIDE.md](GUIDE.md).
+- Make changes as new ops, either in git or exported from the v2 UI. See [GUIDE.md](GUIDE.md).

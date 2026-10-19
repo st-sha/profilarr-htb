@@ -41,6 +41,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `1.htb-quality-group-member-positions.sql` | Orders the qualities inside each quality group as v1 did. Schema 1.1.0 added the column after rosettarr was written |
 | `2.htb-language-any-and-not-original.sql` | Rebuilds v1's `language: must_original`: profile language Any, plus a "Not Original" custom format scored -1 in every profile |
 | `3.htb-streaming-services-in-rename.sql` | Turns on "include in rename" for the streaming formats that have it live |
+| `4.htb-xvid-regex-from-dictionarry.sql` | Deliberate change, not parity: uses Dictionarry's Xvid regex `\b(Xvid)\b` (chosen 2026-10-18) |
 
 Later files are changes made in the Profilarr v2 UI and exported here.
 

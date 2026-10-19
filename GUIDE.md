@@ -80,6 +80,18 @@ developer. Every edit becomes a base draft and can be exported.
 
 Never turn on Local ops for HTB. Edits would then stay inside v2 and never reach git.
 
+The HTB database's link settings in v2:
+
+| Setting | Value |
+| --- | --- |
+| Name | HTB |
+| Repository | `https://github.com/st-sha/profilarr-htb`, branch `v2` (fixed at link time) |
+| Personal access token | Fine-grained, `st-sha/profilarr-htb` only, Contents read and write |
+| Local ops | Off |
+| Auto pull | Off. Pull by hand |
+| Conflict strategy | Ask |
+| Git author | Steven Shaw, smshaw@gmail.com |
+
 ## 4. Routines
 
 ### 4.1 Change a score
@@ -255,12 +267,17 @@ Ops `0` to `3` rebuild the v1 database as live Radarr and Sonarr had it on 2026-
   "Not Original" at -1 in every profile).
 - `3.htb-streaming-services-in-rename.sql`: the 18 streaming formats that are in file names live.
 
-Known differences from live at the parity check. The first v2 sync at cutover would change only
-these:
+Op `4` is the first deliberate change:
+
+- `4.htb-xvid-regex-from-dictionarry.sql`: uses Dictionarry's Xvid regex `\b(Xvid)\b` instead of
+  the fork's `(?i)[-. ]Xvid`. Radarr already has it, a leftover from the June 2026 v2 trial.
+  Steven chose it on 2026-10-18.
+
+Known differences from live at the parity check, all accepted. The first v2 sync at cutover
+would change only these:
 
 - **Group numbering** in Radarr `2160p Remux`, `2160p Remux (Prefer Theatrical)` and
   `2160p Efficient`, and Sonarr `2160p Remux` and `2160p Efficient`. v1 numbered groups from their
   YAML ids, while v2 numbers them 1001, 1002 and so on from the top. Members, order, allowed flags
   and the cutoff group are the same, so release choice doesn't change.
-- **Radarr's Xvid regex** is `\b(Xvid)\b`, a leftover from the June 2026 v2 trial (Dictionarry's
-  op 58). This database keeps the fork's `(?i)[-. ]Xvid`, which Sonarr already uses.
+- **Sonarr's Xvid regex** changes from `(?i)[-. ]Xvid` to `\b(Xvid)\b` (op 4).

@@ -324,7 +324,7 @@ Op `4` is the first deliberate change:
   the fork's `(?i)[-. ]Xvid`. Radarr already has it, a leftover from the June 2026 v2 trial.
   Steven chose it on 2026-10-18.
 
-Op `7` is the first change after cutover:
+Ops `7` and `8` are changes after cutover:
 
 - `7.htb-upstream-group-tiers-batch-1.sql`: batch 1 of the upstream group-tier review, from
   Dictionarry `fb09c84`. It adds 16 banned groups and HDT to Banned Remux, adds or moves groups
@@ -333,6 +333,11 @@ Op `7` is the first change after cutover:
   It leaves out upstream's ban removals and new format families. SiCFoI goes into Remux Tier 4 as
   a release-group condition, because upstream's release-title condition never matches. Steven
   approved it on 2026-10-19.
+- `8.htb-framestor-encodes-tier-2.sql`: FraMeSToR's 1080p and 720p encodes move to Quality
+  Tier 2, the same tier as its remuxes. Upstream ranks encoders by Golden Popcorn awards, which are
+  thin for a remux group, and had put FraMeSToR at 1080p Tier 6. Steven chose this on 2026-10-19
+  after a library search would have swapped FraMeSToR's lossless encodes for lossy ones. Keep it
+  when copying future upstream tier changes.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

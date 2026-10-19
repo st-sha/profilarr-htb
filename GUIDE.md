@@ -283,7 +283,8 @@ Status: from the 2.2.0 source.
 
 ## 7. What's in this branch, and known differences
 
-Ops `0` to `3` and `5` rebuild the v1 database as live Radarr and Sonarr had it on 2026-10-18:
+Ops `0` to `3`, `5` and `6` rebuild the v1 database as live Radarr and Sonarr had it on
+2026-10-18:
 
 - `0.rosettarr.sql`: the converted v1 YAML (`stable` at `3904008`), unmodified.
 - `1.htb-quality-group-member-positions.sql`: the order of qualities inside each group, which v1
@@ -293,6 +294,9 @@ Ops `0` to `3` and `5` rebuild the v1 database as live Radarr and Sonarr had it 
 - `3.htb-streaming-services-in-rename.sql`: the 18 streaming formats that are in file names live.
 - `5.htb-default-delay-profile.sql`: the "HTB Default" delay profile, matching live (prefer
   torrent, no delays, no bypass). Select it on each Arr's Sync page.
+- `6.htb-unlimited-max-quality-sizes.sql`: live quality definitions have every maximum at the
+  slider top (Radarr 2000, Sonarr 1000), which means unlimited. Profilarr v2 stores unlimited as
+  0, so this op does too. A sync would send "no maximum", which the Arr treats the same way.
 
 Op `4` is the first deliberate change:
 

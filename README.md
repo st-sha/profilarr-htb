@@ -44,6 +44,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `3.htb-streaming-services-in-rename.sql` | Turns on "include in rename" for the streaming formats that have it live |
 | `4.htb-xvid-regex-from-dictionarry.sql` | Deliberate change, not parity: uses Dictionarry's Xvid regex `\b(Xvid)\b` (chosen 2026-10-18) |
 | `5.htb-default-delay-profile.sql` | The "HTB Default" delay profile, matching live: prefer torrent, no delays, no bypass |
+| `6.htb-unlimited-max-quality-sizes.sql` | Stores the Arrs' "unlimited" maximum sizes (Radarr 2000, Sonarr 1000) as 0, the way Profilarr v2 does |
 
 Later files are changes made in the Profilarr v2 UI and exported here.
 

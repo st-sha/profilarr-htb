@@ -1,0 +1,24 @@
+{
+  "name": "htb",
+  "version": "1.0.0",
+  "description": "The HTB's Radarr and Sonarr quality profiles and custom formats, converted from the v1 fork (stable at 3904008)",
+  "arr_types": [
+    "radarr",
+    "sonarr"
+  ],
+  "dependencies": {
+    "https://github.com/Dictionarry-Hub/schema": "1.1.0"
+  },
+  "authors": [
+    {
+      "name": "st-sha"
+    }
+  ],
+  "repository": "https://github.com/st-sha/profilarr-htb",
+  "links": {
+    "upstream": "https://github.com/Dictionarry-Hub/database"
+  },
+  "profilarr": {
+    "minimum_version": "2.2.0"
+  }
+}

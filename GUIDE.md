@@ -288,6 +288,8 @@ Status: from the 2.2.0 source.
 - Profilarr v2 has synced production Radarr and Sonarr since the 2026-10-18 cutover. v1 is
   stopped.
 - Measure a scoring re-band in a sandbox Arr before it reaches a real one.
+- In `2160p Quality (English Dub)`, a ban is -20,000,000. When a new format is banned "in every
+  profile", score it -20,000,000 there (see section 7).
 
 ## 6. Troubleshooting
 
@@ -338,6 +340,46 @@ Ops `7` and `8` are changes after cutover:
   thin for a remux group, and had put FraMeSToR at 1080p Tier 6. Steven chose this on 2026-10-19
   after a library search would have swapped FraMeSToR's lossless encodes for lossy ones. Keep it
   when copying future upstream tier changes.
+
+Ops `9` to `13` are the 2026-10-19 profile review, approved by Steven on 2026-10-19 and 2026-10-20.
+Each was measured on every library file and against 75 saved searches before it synced:
+
+- `9.htb-tv-and-safety.sql`: upstream's four junk guards (Audio Description, Banned Dual Audio
+  Groups, Banned Language Groups, Banned Groups (Release Title)), CAM for movies with an HTB
+  "not a Blu-ray" condition, DVD Quality tiers in place of the SD tiers, 576p WEB-DL at 70,000 and
+  ATV at ATVP's scores.
+- `10.htb-language-and-dubs.sql`:
+  - "Foreign Language Only" bans, for movies only, a release whose name carries a foreign language
+    tag after the year and has no original-language audio.
+  - The Balanced tiers drop to about 385,000 in the two 2160p Quality profiles, below 4K WEB-DLs
+    and Tier 6 encodes.
+  - `2160p Quality (English Dub)` is a Radarr profile for English-dubbed films. It requires English
+    audio, and dual audio wins over any resolution.
+- `11.htb-audio-and-streaming.sql`: on the Quality and Remux profiles every lossless codec scores
+  2,000 (DTS:X 2,010) and Atmos 400. Streaming scores become Dictionarry's, and Bravia Core gets
+  +7,000 on the 4K Quality and Remux profiles.
+- `12.htb-upstream-alignment.sql`:
+  - Dictionarry's ban structure. Banned Groups no longer bans releases with no group, Steven's
+    choice. MeGusta, PSA and iVy are unbanned. RARBG moves to Banned Groups (Regular) and
+    (Efficient).
+  - 39 pattern updates where HTB still had the old upstream pattern. Repack1 keeps HTB's.
+  - Upstream's HDR structure: one HDR format covers HDR10, HLG and PQ, and HDR10+ stays 1,000.
+  - Upscale and Extras now cover TV too.
+  - Upstream formats added unscored, and Remux Only's 4K remux at 500,000.
+- `13.htb-upstream-conditions.sql`: Dictionarry's condition changes on 77 formats that still had
+  the v1 form. It keeps HTB's own choices (FraMeSToR at Tier 2, SiCFoI as a group, Not Original,
+  CAM, the bans, the HDR family) and leaves out 1080p Efficient TV WEB Tier 5, whose season-pack
+  rule couldn't be measured.
+
+How the English Dub profile scores, for anyone changing it later:
+
+- 4K, 1080p and 720p share one quality group, so scores decide between them.
+- `Resolution 1080p` +2,000,000, `Resolution 2160p` +4,000,000 and `Dual Audio` +6,000,000 keep dual
+  audio above English-only at any resolution, and 4K above 1080p above 720p within the same audio.
+- `English Audio Missing` (-20,000,000) bans a release with no English language and no "Dual Audio"
+  or "DUBBED" in its name.
+- Every ban in this profile is -20,000,000 and upgrade-until is 88,888,888. A -999,999 ban would no
+  longer outweigh the bonuses.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

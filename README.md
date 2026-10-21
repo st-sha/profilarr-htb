@@ -24,8 +24,8 @@ priority, and the remux profiles avoid special editions where asked.
 - Three custom format YAML files (`2160p Bluray`, `Banned Groups`, `Remux Tier 0`) have
   multi-line descriptions that rosettarr's YAML parser rejects. They were normalized with PyYAML
   (the parser v1 uses) before conversion. Their parsed data is identical.
-- `2160p Remux Only` scores a custom format named `ATV` that doesn't exist. v1 skipped that row,
-  and so does the conversion.
+- `2160p Remux Only` scored a custom format named `ATV` that didn't exist. v1 skipped that row,
+  and so did the conversion. Op 9 added `ATV`, so every profile now scores it.
 
 ## Layout
 
@@ -48,6 +48,11 @@ priority, and the remux profiles avoid special editions where asked.
 | `6.htb-unlimited-max-quality-sizes.sql` | Stores the Arrs' "unlimited" maximum sizes (Radarr 2000, Sonarr 1000) as 0, the way Profilarr v2 does |
 | `7.htb-upstream-group-tiers-batch-1.sql` | Deliberate change: Dictionarry's release-group tier and ban updates (batch 1 of the 2026-10-19 review, upstream `fb09c84`). Scores are unchanged |
 | `8.htb-framestor-encodes-tier-2.sql` | Deliberate change: FraMeSToR's 1080p and 720p encodes rank at Tier 2, the same as its remuxes (Steven's choice, 2026-10-19) |
+| `9.htb-tv-and-safety.sql` | Deliberate change (2026-10-19 review, package 1): four junk guards, CAM for movies (never a Blu-ray), DVD tiers replace the SD tiers, 576p WEB-DL, ATV |
+| `10.htb-language-and-dubs.sql` | Deliberate change (package 2): the movie foreign-language guard "Foreign Language Only", Balanced tiers lowered in the Quality profiles, and the new `2160p Quality (English Dub)` profile |
+| `11.htb-audio-and-streaming.sql` | Deliberate change (package 3): every lossless codec scores 2,000 on the Quality and Remux profiles, Atmos 400, Dictionarry's streaming values, Bravia Core +7,000 |
+| `12.htb-upstream-alignment.sql` | Deliberate change (package 4): Dictionarry's ban structure (no-group releases allowed), 39 pattern updates, upstream's HDR structure, Upscale and Extras cover TV, unscored upstream formats, Remux Only tidy |
+| `13.htb-upstream-conditions.sql` | Alignment: Dictionarry's condition changes on 77 formats that still had the old form. Measured with no change in what Radarr or Sonarr pick |
 
 Later files are HTB changes, written in git or exported from the v2 UI.
 
@@ -57,3 +62,5 @@ Later files are HTB changes, written in git or exported from the v2 UI.
   series and request default points at those profiles.
 - Never edit or delete a published file in `ops/`. Add a new op instead.
 - Make changes as new ops, either in git or exported from the v2 UI. See [GUIDE.md](GUIDE.md).
+- In `2160p Quality (English Dub)`, bans are -20,000,000, not -999,999, because that profile's
+  bonuses reach about 10,500,000. A new ban "in every profile" needs -20,000,000 there.

@@ -49,10 +49,11 @@ priority, and the remux profiles avoid special editions where asked.
 | `7.htb-upstream-group-tiers-batch-1.sql` | Deliberate change: Dictionarry's release-group tier and ban updates (batch 1 of the 2026-10-19 review, upstream `fb09c84`). Scores are unchanged |
 | `8.htb-framestor-encodes-tier-2.sql` | Deliberate change: FraMeSToR's 1080p and 720p encodes rank at Tier 2, the same as its remuxes (Steven's choice, 2026-10-19) |
 | `9.htb-tv-and-safety.sql` | Deliberate change (2026-10-19 review, package 1): four junk guards, CAM for movies (never a Blu-ray), DVD tiers replace the SD tiers, 576p WEB-DL, ATV |
-| `10.htb-language-and-dubs.sql` | Deliberate change (package 2): the movie foreign-language guard "Foreign Language Only", Balanced tiers lowered in the Quality profiles, and the new `2160p Quality (English Dub)` profile |
+| `10.htb-language-and-dubs.sql` | Deliberate change (package 2): the movie foreign-language guard "Foreign Language Only", Balanced tiers lowered in the Quality profiles, and a `2160p Quality (English Dub)` profile that op 14 later removed |
 | `11.htb-audio-and-streaming.sql` | Deliberate change (package 3): every lossless codec scores 2,000 on the Quality and Remux profiles, Atmos 400, Dictionarry's streaming values, Bravia Core +7,000 |
 | `12.htb-upstream-alignment.sql` | Deliberate change (package 4): Dictionarry's ban structure (no-group releases allowed), 39 pattern updates, upstream's HDR structure, Upscale and Extras cover TV, unscored upstream formats, Remux Only tidy |
 | `13.htb-upstream-conditions.sql` | Alignment: Dictionarry's condition changes on 77 formats that still had the old form. Measured with no change in what Radarr or Sonarr pick |
+| `14.htb-remove-english-dub-profile.sql` | Removes the `2160p Quality (English Dub)` profile and the three formats only it used (Steven's choice, 2026-10-21) |
 
 Later files are HTB changes, written in git or exported from the v2 UI.
 
@@ -62,5 +63,3 @@ Later files are HTB changes, written in git or exported from the v2 UI.
   series and request default points at those profiles.
 - Never edit or delete a published file in `ops/`. Add a new op instead.
 - Make changes as new ops, either in git or exported from the v2 UI. See [GUIDE.md](GUIDE.md).
-- In `2160p Quality (English Dub)`, bans are -20,000,000, not -999,999, because that profile's
-  bonuses reach about 10,500,000. A new ban "in every profile" needs -20,000,000 there.

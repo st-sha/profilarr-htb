@@ -288,8 +288,6 @@ Status: from the 2.2.0 source.
 - Profilarr v2 has synced production Radarr and Sonarr since the 2026-10-18 cutover. v1 is
   stopped.
 - Measure a scoring re-band in a sandbox Arr before it reaches a real one.
-- In `2160p Quality (English Dub)`, a ban is -20,000,000. When a new format is banned "in every
-  profile", score it -20,000,000 there (see section 7).
 
 ## 6. Troubleshooting
 
@@ -353,8 +351,7 @@ Each was measured on every library file and against 75 saved searches before it 
     tag after the year and has no original-language audio.
   - The Balanced tiers drop to about 385,000 in the two 2160p Quality profiles, below 4K WEB-DLs
     and Tier 6 encodes.
-  - `2160p Quality (English Dub)` is a Radarr profile for English-dubbed films. It requires English
-    audio, and dual audio wins over any resolution.
+  - `2160p Quality (English Dub)` was a Radarr profile for English-dubbed films. Op 14 removed it.
 - `11.htb-audio-and-streaming.sql`: on the Quality and Remux profiles every lossless codec scores
   2,000 (DTS:X 2,010) and Atmos 400. Streaming scores become Dictionarry's, and Bravia Core gets
   +7,000 on the 4K Quality and Remux profiles.
@@ -370,16 +367,10 @@ Each was measured on every library file and against 75 saved searches before it 
   the v1 form. It keeps HTB's own choices (FraMeSToR at Tier 2, SiCFoI as a group, Not Original,
   CAM, the bans, the HDR family) and leaves out 1080p Efficient TV WEB Tier 5, whose season-pack
   rule couldn't be measured.
-
-How the English Dub profile scores, for anyone changing it later:
-
-- 4K, 1080p and 720p share one quality group, so scores decide between them.
-- `Resolution 1080p` +2,000,000, `Resolution 2160p` +4,000,000 and `Dual Audio` +6,000,000 keep dual
-  audio above English-only at any resolution, and 4K above 1080p above 720p within the same audio.
-- `English Audio Missing` (-20,000,000) bans a release with no English language and no "Dual Audio"
-  or "DUBBED" in its name.
-- Every ban in this profile is -20,000,000 and upgrade-until is 88,888,888. A -999,999 ban would no
-  longer outweigh the bonuses.
+- `14.htb-remove-english-dub-profile.sql`: removes `2160p Quality (English Dub)` and the three
+  formats only it scored (Resolution 1080p, Resolution 2160p, English Audio Missing). Steven chose
+  on 2026-10-21 not to use a dub profile; its films went back to `2160p Quality`. Upstream's Dual
+  Audio and DUBBED formats stay, unscored.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

@@ -371,6 +371,14 @@ Each was measured on every library file and against 75 saved searches before it 
   formats only it scored (Resolution 1080p, Resolution 2160p, English Audio Missing). Steven chose
   on 2026-10-21 not to use a dub profile; its films went back to `2160p Quality`. Upstream's Dual
   Audio and DUBBED formats stay, unscored.
+- `15.htb-hevc-like-h265.sql`: `x265 (WEB)` and `x265` now use a new regex, `x265 (Encoder)`, that
+  matches only the x265 encoder tag. Before, they shared the `x265` regex, which also matches the
+  word HEVC. Streaming services serve some 1080p video as untouched HEVC (often HDR10), titled
+  either H.265 or HEVC. HTB has scored upstream's `h265` format at 0 since v1, so H.265 titles were
+  allowed but HEVC titles were banned, and the Arrs' renamed files carry `[HEVC]`, so an allowed
+  grab turned negative after import and was replaced by an H.264 copy. The shared `x265` regex is
+  unchanged, so `x265 (Bluray)`, `x265 (Efficient)`, `UHD Bluray`, `Full Disc` and `HDR (Missing)`
+  behave as before. Steven's choice on 2026-10-25. No scores change.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

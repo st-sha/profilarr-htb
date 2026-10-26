@@ -55,6 +55,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `13.htb-upstream-conditions.sql` | Alignment: Dictionarry's condition changes on 77 formats that still had the old form. Measured with no change in what Radarr or Sonarr pick |
 | `14.htb-remove-english-dub-profile.sql` | Removes the `2160p Quality (English Dub)` profile and the three formats only it used (Steven's choice, 2026-10-21) |
 | `15.htb-hevc-like-h265.sql` | Deliberate change: `x265 (WEB)` and `x265` match only the x265 encoder tag, so untouched HEVC streams score like H.265 ones (Steven's choice, 2026-10-25). No scores change |
+| `16.htb-untiered-4k-encoders-tier-6.sql` | Deliberate change: BROADCAST, segment, stories and SNOW join `2160p Quality Tier 6`, so their 4K Blu-ray encodes outrank 4K WEB-DLs (Steven's choice, 2026-10-25). No scores change |
 
 Later files are HTB changes, written in git or exported from the v2 UI.
 

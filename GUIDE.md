@@ -379,6 +379,12 @@ Each was measured on every library file and against 75 saved searches before it 
   grab turned negative after import and was replaced by an H.264 copy. The shared `x265` regex is
   unchanged, so `x265 (Bluray)`, `x265 (Efficient)`, `UHD Bluray`, `Full Disc` and `HDR (Missing)`
   behave as before. Steven's choice on 2026-10-25. No scores change.
+- `16.htb-untiered-4k-encoders-tier-6.sql`: BROADCAST, segment, stories and SNOW join
+  `2160p Quality Tier 6`. Upstream doesn't rate them, so their 4K Blu-ray encodes had no base score
+  and any 4K WEB-DL replaced them. In the library their encodes match the tiered ones (median 26 to
+  42 Mbps by group, all with lossless audio), while the WEB-DLs that would replace them run about
+  16 to 22 Mbps with lossy audio. Same kind of override as op 8. Steven's choice on 2026-10-25. No
+  scores change. Other untiered 4K encoders stay untiered.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

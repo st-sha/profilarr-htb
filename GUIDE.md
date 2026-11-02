@@ -385,6 +385,26 @@ Each was measured on every library file and against 75 saved searches before it 
   42 Mbps by group, all with lossless audio), while the WEB-DLs that would replace them run about
   16 to 22 Mbps with lossy audio. Same kind of override as op 8. Steven's choice on 2026-10-25. No
   scores change. Other untiered 4K encoders stay untiered.
+- `17.htb-dts-like-dolby-digital.sql`: ordinary DTS rises from 300 to 400 in all nine source
+  profiles, equal to Dolby Digital. Upstream preferred DD as a proxy for newer 1080p Blu-ray
+  encodes, not proven better audio fidelity
+  ([rationale](https://github.com/Dictionarry-Hub/database/issues/121#issuecomment-3685036673)).
+  Steven chose on 2026-11-02 not to treat the codec alone as an improvement. The update covers
+  every arr type; all nine existing DTS rows use `all`, with no app-specific overrides.
+  Dolby Digital, lossless audio, DTS-ES/HRA/X, other scores, profile names, thresholds and matching
+  rules stay unchanged. With all other contributions tied, the Korra S03 D-Z0N3 DTS score rises
+  from 404310 to 404410, tying CtrlHD DD.
+
+  To undo op 17, append a new op (never edit op 17):
+
+  ```sql
+  UPDATE quality_profile_custom_formats
+  SET score = 300
+  WHERE custom_format_name = 'DTS' AND score = 400;
+  ```
+
+  This restores all nine pre-op-17 DTS rows exactly. If later ops change DTS scores, review those
+  changes before using this inverse.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

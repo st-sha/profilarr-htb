@@ -336,8 +336,8 @@ Ops `7` and `8` are changes after cutover:
 - `8.htb-framestor-encodes-tier-2.sql`: FraMeSToR's 1080p and 720p encodes move to Quality
   Tier 2, the same tier as its remuxes. Upstream ranks encoders by Golden Popcorn awards, which are
   thin for a remux group, and had put FraMeSToR at 1080p Tier 6. Steven chose this on 2026-10-19
-  after a library search would have swapped FraMeSToR's lossless encodes for lossy ones. Keep it
-  when copying future upstream tier changes.
+  after a library search would have swapped FraMeSToR's lossless encodes for lossy ones. Op 19
+  later moved them to decibeL's tiers.
 
 Ops `9` to `13` are the 2026-10-19 profile review, approved by Steven on 2026-10-19 and 2026-10-20.
 Each was measured on every library file and against 75 saved searches before it synced:
@@ -405,6 +405,32 @@ Each was measured on every library file and against 75 saved searches before it 
 
   This restores all nine pre-op-17 DTS rows exactly. If later ops change DTS scores, review those
   changes before using this inverse.
+- `18.htb-bordure-1080p-tier-6.sql`: BORDURE joins `1080p Quality Tier 6`. Its 1080p Blu-ray
+  encodes matched no tier, so any Tier 6 group outscored them by 120,000, even with lower bitrate
+  and lossy audio (Curb Your Enthusiasm S11). In the library BORDURE's 512 episodes run a median
+  of 12.6 Mbps and 290 carry DTS-HD MA. Same kind of override as op 16. Steven's choice on
+  2026-11-02. No scores change.
+- `19.htb-framestor-encodes-tier-3.sql`: FraMeSToR's 1080p and 720p encodes move from Tier 2
+  (op 8) to decibeL's tiers, `1080p Quality Tier 3` and `720p Quality Tier 4`. Since op 11,
+  lossless audio beats lossy from one tier below, so op 8's reason is smaller. Battlestar Galactica
+  (2003) S02 showed the cost of Tier 2: FraMeSToR's pack beat decibeL's by 1,000 with no visible
+  gain and without decibeL's commentary tracks. Remux Tier 2 and the unscored
+  `1080p Quality Tier 6 (Efficient)` entry stay. Steven's choice on 2026-11-10. No scores change.
+  It lowered 137 movie files and 191 episodes by 1,000. Keep it when copying future upstream tier
+  changes.
+- `20.htb-dvd-remux-just-below-dvd.sql`: "DVD Remux" goes from -999,999 to 19,700 in the eight
+  profiles that banned it (`2160p Efficient` keeps 20,000). The "DVD" format every DVD encode gets
+  (20,000) excludes remuxes, so the ban made a lossy DVD encode an approved replacement for an
+  untouched disc remux (The Joe Schmo Show S02). At 19,700 an encode still wins a tie, and still
+  wins when its audio is AAC against the remux's Dolby Digital. A remux wins only against an encode
+  with no scored audio. Tiered DVD encodes always win, and full disc images stay banned. Steven's
+  choice on 2026-11-10: a remux should score just a bit less than an encode.
+- `21.htb-ga-web-dl-re-encode.sql`: a new format, `WEB-DL Re-encode`, matches WEB-DL releases from
+  listed groups and scores -1,000 in all nine profiles, one tier step. GA is the only member: its
+  Grey's Anatomy "AMZN WEB-DL" packs are x264 CRF 18 re-encodes that outscored the untouched stream
+  by 920. The Arrs can't see encoder settings, so add a group only after a file comparison.
+  TrollHD and RTN were reviewed and left out (some TrollHD packs are untouched streams, and Steven
+  chose TrollHD for New Girl S02 and S03). Steven's choice on 2026-11-10. No library file changed.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

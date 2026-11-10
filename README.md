@@ -47,7 +47,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `5.htb-default-delay-profile.sql` | The "HTB Default" delay profile, matching live: prefer torrent, no delays, no bypass |
 | `6.htb-unlimited-max-quality-sizes.sql` | Stores the Arrs' "unlimited" maximum sizes (Radarr 2000, Sonarr 1000) as 0, the way Profilarr v2 does |
 | `7.htb-upstream-group-tiers-batch-1.sql` | Deliberate change: Dictionarry's release-group tier and ban updates (batch 1 of the 2026-10-19 review, upstream `fb09c84`). Scores are unchanged |
-| `8.htb-framestor-encodes-tier-2.sql` | Deliberate change: FraMeSToR's 1080p and 720p encodes rank at Tier 2, the same as its remuxes (Steven's choice, 2026-10-19) |
+| `8.htb-framestor-encodes-tier-2.sql` | Deliberate change: FraMeSToR's 1080p and 720p encodes rank at Tier 2, the same as its remuxes (Steven's choice, 2026-10-19). Op 19 later moved them to decibeL's tiers |
 | `9.htb-tv-and-safety.sql` | Deliberate change (2026-10-19 review, package 1): four junk guards, CAM for movies (never a Blu-ray), DVD tiers replace the SD tiers, 576p WEB-DL, ATV |
 | `10.htb-language-and-dubs.sql` | Deliberate change (package 2): the movie foreign-language guard "Foreign Language Only", Balanced tiers lowered in the Quality profiles, and a `2160p Quality (English Dub)` profile that op 14 later removed |
 | `11.htb-audio-and-streaming.sql` | Deliberate change (package 3): every lossless codec scores 2,000 on the Quality and Remux profiles, Atmos 400, Dictionarry's streaming values, Bravia Core +7,000 |
@@ -57,6 +57,10 @@ priority, and the remux profiles avoid special editions where asked.
 | `15.htb-hevc-like-h265.sql` | Deliberate change: `x265 (WEB)` and `x265` match only the x265 encoder tag, so untouched HEVC streams score like H.265 ones (Steven's choice, 2026-10-25). No scores change |
 | `16.htb-untiered-4k-encoders-tier-6.sql` | Deliberate change: BROADCAST, segment, stories and SNOW join `2160p Quality Tier 6`, so their 4K Blu-ray encodes outrank 4K WEB-DLs (Steven's choice, 2026-10-25). No scores change |
 | `17.htb-dts-like-dolby-digital.sql` | Deliberate change: ordinary DTS rises from 300 to 400 in all nine source profiles, equal to Dolby Digital (Steven's choice, 2026-11-02). Other scores and matching rules stay unchanged |
+| `18.htb-bordure-1080p-tier-6.sql` | Deliberate change: BORDURE joins `1080p Quality Tier 6`, so its 1080p Blu-ray encodes stop losing to any Tier 6 group (Steven's choice, 2026-11-02). No scores change |
+| `19.htb-framestor-encodes-tier-3.sql` | Deliberate change: FraMeSToR's encodes rank equal to decibeL's, 1080p Quality Tier 3 and 720p Quality Tier 4 (Steven's choice, 2026-11-10). Its remuxes stay at Remux Tier 2. No scores change |
+| `20.htb-dvd-remux-just-below-dvd.sql` | Deliberate change: "DVD Remux" scores 19,700 instead of -999,999 in the eight profiles that banned it, just below an untiered DVD encode (Steven's choice, 2026-11-10) |
+| `21.htb-ga-web-dl-re-encode.sql` | Deliberate change: a new "WEB-DL Re-encode" format, -1,000 in every profile, for groups whose WEB-DLs are x264 CRF re-encodes. GA is the only member (Steven's choice, 2026-11-10) |
 
 Later files are HTB changes, written in git or exported from the v2 UI.
 

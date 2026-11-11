@@ -61,6 +61,7 @@ priority, and the remux profiles avoid special editions where asked.
 | `19.htb-framestor-encodes-tier-3.sql` | Deliberate change: FraMeSToR's encodes rank equal to decibeL's, 1080p Quality Tier 3 and 720p Quality Tier 4 (Steven's choice, 2026-11-10). Its remuxes stay at Remux Tier 2. No scores change |
 | `20.htb-dvd-remux-just-below-dvd.sql` | Deliberate change: "DVD Remux" scores 19,700 instead of -999,999 in the eight profiles that banned it, just below an untiered DVD encode (Steven's choice, 2026-11-10) |
 | `21.htb-ga-web-dl-re-encode.sql` | Deliberate change: a new "WEB-DL Re-encode" format, -1,000 in every profile, for groups whose WEB-DLs are x264 CRF re-encodes. GA is the only member (Steven's choice, 2026-11-10) |
+| `22.htb-full-disc-hevc-titles.sql` | Fix: "Full Disc" no longer skips UHD disc sets whose names say HEVC. Its "Not x265" condition uses op 15's `x265 (Encoder)` regex (Steven's choice, 2026-11-10). No scores change |
 
 Later files are HTB changes, written in git or exported from the v2 UI.
 

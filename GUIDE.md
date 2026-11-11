@@ -431,6 +431,14 @@ Each was measured on every library file and against 75 saved searches before it 
   by 920. The Arrs can't see encoder settings, so add a group only after a file comparison.
   TrollHD and RTN were reviewed and left out (some TrollHD packs are untouched streams, and Steven
   chose TrollHD for New Girl S02 and S03). Steven's choice on 2026-11-10. No library file changed.
+- `22.htb-full-disc-hevc-titles.sql`: "Full Disc" requires "Not x265", which used the shared `x265`
+  regex. That regex also matches the word HEVC, and every UHD disc says HEVC, so a disc set named
+  "Fallout.S01.DV.HDR.2160p.BluRay.TrueHDA.7.1.HEVC-BROADCAST" (three ISOs, 284 GB) missed the ban
+  and scored as a Tier 6 encode in Sonarr. Radarr already parses such titles as BR-DISK and bans
+  them through "Full Disc (Quality Match)". "Not x265" now uses op 15's `x265 (Encoder)` regex, so
+  only the x265 encoder tag exempts a title. Measured: no library file changed score, and 29 listings
+  in the saved Sonarr previews became banned, all disc sets. Steven's choice on 2026-11-10. No
+  scores change. Upstream Dictionarry has the same gap.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync

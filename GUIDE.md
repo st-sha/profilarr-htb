@@ -439,6 +439,30 @@ Each was measured on every library file and against 75 saved searches before it 
   only the x265 encoder tag exempts a title. Measured: no library file changed score, and 29 listings
   in the saved Sonarr previews became banned, all disc sets. Steven's choice on 2026-11-10. No
   scores change. Upstream Dictionarry has the same gap.
+- `23.htb-remux-files-below-same-resolution-encodes.sql`: the Quality, Balanced and Efficient
+  profiles didn't list the remux qualities, so Profilarr sent them as disallowed entries at the
+  bottom of the ladder and any allowed release beat a remux file. After op 20, It's Always Sunny
+  S06E13's 1080p Blu-ray remux was offered a 480i DVD remux. Remux-1080p and Remux-2160p are now
+  listed, still disallowed, just below the Blu-ray encode entry of their own resolution, so an
+  encode of the same resolution can still replace a remux but a lower resolution or a DVD can't.
+  Measured: no score changes on either Arr; the only search decision that changes is the Sunny
+  offer. Steven's choice on 2026-11-13 (option A2; A, remuxes at the top, would have stopped
+  encodes replacing remuxes).
+- `24.htb-theatrical-cut-labels.sql`: two changes from the movie cut and edition audit. "Theatrical"
+  and "Better Theatricals" excluded any name with a Special Edition word, and "Cut" is one, so
+  "Theatrical Cut" counted as unlabeled (59 of 131 theatrical-labeled saved releases). Both now use
+  `Special Edition (Not Theatrical Cut)`, which skips Cut, Version or Edition right after
+  "Theatrical". And "Theatrical" scores 24,500 on both Prefer Theatrical profiles, so a labeled
+  theatrical beats an unlabeled release up to one encode class better. 25,000 or more would let The
+  Patriot's misparsed TERMiNAL full disc replace its encode. Measured with 137 saved and fresh
+  read-only searches: 34 files gain the bonus, six flagged longer cuts would get a labeled
+  theatrical on a search, and six unlabeled theatrical files would move to a labeled copy of the
+  same quality. Steven's choice on 2026-11-13.
+- `25.htb-retire-better-theatricals.sql`: "Better Theatricals" scores 0 everywhere. It matches on
+  the movie's title, and Radarr replaces that with "A Movie" before matching release titles, so it
+  never applied to a release (0 of 6,348 saved). Per-movie theatrical preference is the Prefer
+  Theatrical profiles. Almost Famous drops 1,000; no decision changes. Steven's choice on
+  2026-11-13.
 
 Known differences from live at the parity check, all accepted. v2's own drift check against
 production Radarr and Sonarr confirmed them on 2026-10-18 at commit `c6b65c7`. The cutover sync
